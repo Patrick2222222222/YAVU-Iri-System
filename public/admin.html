@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YAVU - Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css" />
+    <!-- Font Awesome für Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo">YAVU</span>
+        <span class="sidebar-subtitle">ADMIN PANEL</span>
+      </div>
+
+      <div class="admin-info">
+        <div class="admin-avatar">A</div>
+        <div class="admin-details">
+          <h3>Admin User</h3>
+          <p>Administrator</p>
+        </div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" class="active"
+            ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-store"></i> Studios</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-envelope"></i> Nachrichten</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-file-alt"></i> Content</a>
+        </li>
+        <li>
+          <a href="#" id="trainingMenuLink"
+            ><i class="fas fa-graduation-cap"></i> Schulungen</a
+          >
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-calendar-alt"></i> Buchungen</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-users"></i> Benutzer</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-cog"></i> Einstellungen</a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <a href="#" class="logout-btn" id="logoutButton"
+          ><i class="fas fa-sign-out-alt"></i> Abmelden</a
+        >
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="top-bar">
+        <h1 class="page-title">Dashboard</h1>
+        <div class="notification-bell" id="notificationBell">3</div>
+
+        <!-- Notification Dropdown -->
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notification-item">
+            <b>Neues Studio registriert</b>
+            <p>Beauty Lounge Köln hat sich registriert</p>
+            <small>03.03.2025, 14:25</small>
+          </div>
+          <div class="notification-item">
+            <b>Neue Buchung</b>
+            <p>15 neue Buchungen heute</p>
+            <small>03.03.2025, 10:15</small>
+          </div>
+          <div class="notification-item">
+            <b>Schulung Update</b>
+            <p>Neue Schulungsvideos hochgeladen</p>
+            <small>01.03.2025, 09:30</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Overview -->
+      <div class="stats-container">
+        <div class="stat-card">
+          <div class="stat-label">Aktive Studios</div>
+          <div class="stat-value">128</div>
+          <div class="stat-trend">+12%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Neue Registrierungen</div>
+          <div class="stat-value">24</div>
+          <div class="stat-trend">+8%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Neue Buchungen</div>
+          <div class="stat-value">315</div>
+          <div class="stat-trend">+23%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Offene Anfragen</div>
+          <div class="stat-value">7</div>
+          <div class="stat-trend">-2</div>
+        </div>
+      </div>
+
+      <!-- Recent Studios -->
+      <div class="table-container">
+        <h2 class="table-title">NEUESTE STUDIOS</h2>
+        <table id="studiosTable">
+          <thead>
+            <tr>
+              <th>NAME</th>
+              <th>STANDORT</th>
+              <th>REGISTRIERT AM</th>
+              <th>STATUS</th>
+              <th>AKTIONEN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Wird mit JavaScript gefüllt -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Latest Messages -->
+      <h2 class="table-title">LETZTE NACHRICHTEN</h2>
+      <div id="messagesContainer">
+        <!-- Wird mit JavaScript gefüllt -->
+      </div>
+
+      <!-- Quick Actions -->
+      <h2 class="table-title">SCHNELLAKTIONEN</h2>
+
+      <div class="quick-actions">
+        <div class="action-card" id="addStudioAction">
+          <div class="action-icon"><i class="fas fa-plus"></i></div>
+          <div class="action-text">NEUES STUDIO</div>
+        </div>
+        <div class="action-card" id="sendMessageAction">
+          <div class="action-icon"><i class="fas fa-envelope"></i></div>
+          <div class="action-text">NACHRICHT SENDEN</div>
+        </div>
+        <div class="action-card" id="addTrainingAction">
+          <div class="action-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="action-text">SCHULUNG ANLEGEN</div>
+        </div>
+      </div>
+
+      <!-- Training Management Section (New) -->
+      <div id="trainingManagementSection" class="training-management-section">
+        <h2 class="table-title">SCHULUNGSMANAGEMENT</h2>
+
+        <div class="training-actions">
+          <button class="action-btn btn-primary" id="uploadTrainingBtn">
+            <i class="fas fa-upload"></i> NEUE SCHULUNG HOCHLADEN
+          </button>
+          <button class="action-btn" id="manageAccessBtn">
+            <i class="fas fa-user-lock"></i> ZUGANG VERWALTEN
+          </button>
+        </div>
+
+        <div class="training-categories">
+          <div class="training-category">
+            <h3><i class="fas fa-book"></i> Grundlagen</h3>
+            <div class="training-list" id="basicTrainingList">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+
+          <div class="training-category">
+            <h3><i class="fas fa-chart-line"></i> Fortgeschritten</h3>
+            <div class="training-list" id="advancedTrainingList">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+
+          <div class="training-category">
+            <h3><i class="fas fa-star"></i> Spezial-Techniken</h3>
+            <div class="training-list" id="specialTrainingList">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Studio Modal -->
+      <div class="modal" id="studioModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NEUES STUDIO HINZUFÜGEN</h2>
+          <form id="addStudioForm">
+            <div class="form-group">
+              <label for="studioName">Studioname</label>
+              <input type="text" id="studioName" name="studioName" required />
+            </div>
+            <div class="form-group">
+              <label for="studioLocation">Standort</label>
+              <input
+                type="text"
+                id="studioLocation"
+                name="studioLocation"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="studioContact">Kontaktperson</label>
+              <input type="text" id="studioContact" name="studioContact" />
+            </div>
+            <div class="form-group">
+              <label for="studioEmail">E-Mail</label>
+              <input
+                type="email"
+                id="studioEmail"
+                name="studioEmail"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="studioPhone">Telefon</label>
+              <input type="text" id="studioPhone" name="studioPhone" />
+            </div>
+            <div class="form-group">
+              <label for="studioStatus">Status</label>
+              <select id="studioStatus" name="studioStatus">
+                <option value="active">Aktiv</option>
+                <option value="pending">Prüfung</option>
+                <option value="inactive">Inaktiv</option>
+              </select>
+            </div>
+            <button type="submit" class="form-submit">STUDIO HINZUFÜGEN</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Send Message Modal -->
+      <div class="modal" id="messageModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NACHRICHT SENDEN</h2>
+          <form id="sendMessageForm">
+            <div class="form-group">
+              <label for="messageRecipient">Empfänger</label>
+              <select id="messageRecipient" name="messageRecipient" required>
+                <option value="">Empfänger wählen...</option>
+                <option value="all">Alle Studios</option>
+                <!-- Weitere Optionen werden mit JavaScript gefüllt -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="messageSubject">Betreff</label>
+              <input
+                type="text"
+                id="messageSubject"
+                name="messageSubject"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="messageContent">Nachricht</label>
+              <textarea
+                id="messageContent"
+                name="messageContent"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="form-submit">NACHRICHT SENDEN</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Upload Training Modal (New) -->
+      <div class="modal" id="trainingModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NEUE SCHULUNG HOCHLADEN</h2>
+          <form id="uploadTrainingForm">
+            <div class="form-group">
+              <label for="trainingTitle">Titel</label>
+              <input
+                type="text"
+                id="trainingTitle"
+                name="trainingTitle"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="trainingDescription">Beschreibung</label>
+              <textarea
+                id="trainingDescription"
+                name="trainingDescription"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="trainingCategory">Kategorie</label>
+              <select id="trainingCategory" name="trainingCategory" required>
+                <option value="basic">Grundlagen</option>
+                <option value="advanced">Fortgeschritten</option>
+                <option value="special">Spezial-Techniken</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="trainingVideo">Video-Datei</label>
+              <input
+                type="file"
+                id="trainingVideo"
+                name="trainingVideo"
+                accept="video/*"
+                required
+              />
+              <div class="upload-progress">
+                <div class="progress-bar" id="uploadProgressBar"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="trainingThumbnail">Vorschaubild (optional)</label>
+              <input
+                type="file"
+                id="trainingThumbnail"
+                name="trainingThumbnail"
+                accept="image/*"
+              />
+            </div>
+            <button type="submit" class="form-submit">
+              SCHULUNG HOCHLADEN
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Manage Access Modal (New) -->
+      <div class="modal" id="accessModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">SCHULUNGSZUGANG VERWALTEN</h2>
+
+          <div class="form-group">
+            <label for="accessTraining">Schulung</label>
+            <select id="accessTraining" name="accessTraining" required>
+              <option value="">Schulung auswählen...</option>
+              <!-- Wird mit JavaScript gefüllt -->
+            </select>
+          </div>
+
+          <div class="form-section">
+            <h3>Zugang für Studios</h3>
+            <div id="studioAccessList" class="access-list">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="grantAllAccessBtn" class="action-btn">
+              ALLEN ZUGANG GEWÄHREN
+            </button>
+            <button type="button" id="revokeAllAccessBtn" class="action-btn">
+              ALLEN ZUGANG ENTZIEHEN
+            </button>
+            <button type="button" id="saveAccessBtn" class="form-submit">
+              ÄNDERUNGEN SPEICHERN
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="main-footer">
+        © 2025 YAVU - IRI Filler-System | Admin Dashboard v1.0
+      </div>
+    </div>
+
+    <!-- Firebase App (core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+
+    <!-- Deine Firebase-Konfiguration -->
+    <script src="js/firebase.js"></script>
+
+    <script src="data/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
+
+<!-- Einbindung des Script-Loaders in die HTML-Dateien -->
+<script src="../script-loader.js"></script>

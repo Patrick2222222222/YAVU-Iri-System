@@ -1,0 +1,2430 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="YAVU IRI Filler-System - Admindashboard für nadelfreie Hyaluron-Behandlungen"
+    />
+    <title>YAVU - Admindashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <!-- Font Awesome für Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Chart.js für Diagramme -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">YAVU</div>
+          <div class="sidebar-subtitle">Admindashboard</div>
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">A</div>
+          <div class="user-info">
+            <h3>Admin</h3>
+            <p>admin@yavu.de</p>
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+          <a href="#" id="nav-studios"><i class="fas fa-store"></i> Studios</a>
+          <a href="#" id="nav-users"><i class="fas fa-users"></i> Benutzer</a>
+          <a href="#" id="nav-treatments"><i class="fas fa-spa"></i> Behandlungen</a>
+          <a href="#" id="nav-trainings"><i class="fas fa-graduation-cap"></i> Schulungen</a>
+          <a href="#" id="nav-analytics"><i class="fas fa-chart-line"></i> Analysen</a>
+          <a href="#" id="nav-settings"><i class="fas fa-cog"></i> Einstellungen</a>
+          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Dashboard Overview -->
+        <div id="dashboard-section" class="dashboard-content active">
+          <div class="dashboard-header">
+            <h2>Willkommen im Admin-Dashboard</h2>
+            <p>Hier finden Sie eine Übersicht aller Aktivitäten auf der YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-overview">
+            <div class="overview-card">
+              <h3>24</h3>
+              <p>Aktive Studios</p>
+            </div>
+            <div class="overview-card">
+              <h3>156</h3>
+              <p>Registrierte Kunden</p>
+            </div>
+            <div class="overview-card">
+              <h3>87</h3>
+              <p>Buchungen diese Woche</p>
+            </div>
+            <div class="overview-card">
+              <h3>€12.450</h3>
+              <p>Umsatz diesen Monat</p>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Neueste Studios</h3>
+              <a href="#" id="view-all-studios" class="action-btn">Alle anzeigen</a>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Studio</th>
+                  <th>Standort</th>
+                  <th>Registriert am</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Beauty Lounge Köln</td>
+                  <td>Köln</td>
+                  <td>15.03.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="1"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Skin Perfect Hamburg</td>
+                  <td>Hamburg</td>
+                  <td>10.03.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="2"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Glow Beauty München</td>
+                  <td>München</td>
+                  <td>05.03.2025</td>
+                  <td><span class="status-badge status-pending">Prüfung</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn approve-btn" data-id="3"><i class="fas fa-check"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Neueste Benutzer</h3>
+              <a href="#" id="view-all-users" class="action-btn">Alle anzeigen</a>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>E-Mail</th>
+                  <th>Rolle</th>
+                  <th>Registriert am</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Laura M.</td>
+                  <td>laura.m@example.com</td>
+                  <td>Kunde</td>
+                  <td>12.03.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="1"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sarah M.</td>
+                  <td>sarah.m@example.com</td>
+                  <td>Studio</td>
+                  <td>10.03.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="2"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Thomas K.</td>
+                  <td>thomas.k@example.com</td>
+                  <td>Kunde</td>
+                  <td>08.03.2025</td>
+                  <td><span class="status-badge status-pending">Verifizierung</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn approve-btn" data-id="3"><i class="fas fa-check"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Plattformstatistiken</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Registrierungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="registrationsChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Buchungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="bookingsChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Umsatz</h4>
+                <div class="stats-chart-container">
+                  <canvas id="revenueChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Aktive Nutzer</h4>
+                <div class="stats-chart-container">
+                  <canvas id="activeUsersChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studios Section -->
+        <div id="studios-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Studios</h2>
+            <p>Verwalten Sie alle registrierten Studios auf der YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="add-studio-btn">Neues Studio hinzufügen</button>
+            <div class="search-container">
+              <input type="text" id="studio-search" placeholder="Studios suchen..." />
+              <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-container">
+              <select id="studio-filter">
+                <option value="all">Alle Status</option>
+                <option value="active">Aktiv</option>
+                <option value="pending">Prüfung</option>
+                <option value="inactive">Inaktiv</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Studioliste</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Studio</th>
+                  <th>Standort</th>
+                  <th>Kontakt</th>
+                  <th>Registriert am</th>
+                  <th>Zertifizierungen</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Beauty Lounge Köln</td>
+                  <td>Köln</td>
+                  <td>info@beauty-lounge-koeln.de</td>
+                  <td>15.03.2025</td>
+                  <td>2</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="1"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Skin Perfect Hamburg</td>
+                  <td>Hamburg</td>
+                  <td>info@skin-perfect.de</td>
+                  <td>10.03.2025</td>
+                  <td>1</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="2"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Glow Beauty München</td>
+                  <td>München</td>
+                  <td>info@glow-beauty.de</td>
+                  <td>05.03.2025</td>
+                  <td>0</td>
+                  <td><span class="status-badge status-pending">Prüfung</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn approve-btn" data-id="3"><i class="fas fa-check"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Beauty & Wellness Berlin</td>
+                  <td>Berlin</td>
+                  <td>info@beauty-wellness-berlin.de</td>
+                  <td>01.03.2025</td>
+                  <td>2</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="4"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Schönheitsoase Frankfurt</td>
+                  <td>Frankfurt</td>
+                  <td>info@schoenheitsoase.de</td>
+                  <td>25.02.2025</td>
+                  <td>1</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="5"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Studioverteilung</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Studios nach Standort</h4>
+                <div class="stats-chart-container">
+                  <canvas id="studioLocationChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Studios nach Zertifizierungslevel</h4>
+                <div class="stats-chart-container">
+                  <canvas id="studioCertificationChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Neue Studios pro Monat</h4>
+                <div class="stats-chart-container">
+                  <canvas id="newStudiosChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Durchschnittliche Bewertungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="studioRatingsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Users Section -->
+        <div id="users-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Benutzer</h2>
+            <p>Verwalten Sie alle registrierten Benutzer auf der YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="add-user-btn">Neuen Benutzer hinzufügen</button>
+            <div class="search-container">
+              <input type="text" id="user-search" placeholder="Benutzer suchen..." />
+              <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-container">
+              <select id="user-role-filter">
+                <option value="all">Alle Rollen</option>
+                <option value="customer">Kunden</option>
+                <option value="studio">Studios</option>
+                <option value="admin">Admins</option>
+              </select>
+              <select id="user-status-filter">
+                <option value="all">Alle Status</option>
+                <option value="active">Aktiv</option>
+                <option value="pending">Verifizierung</option>
+                <option value="inactive">Inaktiv</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Benutzerliste</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>E-Mail</th>
+                  <th>Rolle</th>
+                  <th>Registriert am</th>
+                  <th>Letzte Aktivität</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Laura M.</td>
+                  <td>laura.m@example.com</td>
+                  <td>Kunde</td>
+                  <td>12.03.2025</td>
+                  <td>15.04.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="1"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sarah M.</td>
+                  <td>sarah.m@example.com</td>
+                  <td>Studio</td>
+                  <td>10.03.2025</td>
+                  <td>15.04.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="2"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Thomas K.</td>
+                  <td>thomas.k@example.com</td>
+                  <td>Kunde</td>
+                  <td>08.03.2025</td>
+                  <td>08.03.2025</td>
+                  <td><span class="status-badge status-pending">Verifizierung</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn approve-btn" data-id="3"><i class="fas fa-check"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lisa K.</td>
+                  <td>lisa.k@example.com</td>
+                  <td>Studio</td>
+                  <td>05.03.2025</td>
+                  <td>14.04.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="4"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Nina S.</td>
+                  <td>nina.s@example.com</td>
+                  <td>Studio</td>
+                  <td>01.03.2025</td>
+                  <td>13.04.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="5"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sandra K.</td>
+                  <td>sandra.k@example.com</td>
+                  <td>Kunde</td>
+                  <td>25.02.2025</td>
+                  <td>15.04.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="6"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="6"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="6"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Claudia B.</td>
+                  <td>claudia.b@example.com</td>
+                  <td>Kunde</td>
+                  <td>20.02.2025</td>
+                  <td>15.04.2025</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="7"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="7"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="7"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Benutzerstatistiken</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Benutzer nach Rolle</h4>
+                <div class="stats-chart-container">
+                  <canvas id="userRoleChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Neue Registrierungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="newUsersChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Aktive Benutzer</h4>
+                <div class="stats-chart-container">
+                  <canvas id="activeUsersTimeChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Benutzer nach Region</h4>
+                <div class="stats-chart-container">
+                  <canvas id="userRegionChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Treatments Section -->
+        <div id="treatments-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Behandlungen</h2>
+            <p>Verwalten Sie alle Behandlungen auf der YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="add-treatment-btn">Neue Behandlung hinzufügen</button>
+            <div class="search-container">
+              <input type="text" id="treatment-search" placeholder="Behandlungen suchen..." />
+              <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Standardbehandlungen</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Behandlung</th>
+                  <th>Beschreibung</th>
+                  <th>Durchschnittsdauer</th>
+                  <th>Durchschnittspreis</th>
+                  <th>Anzahl Studios</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>Volumenaufbau der Lippen mit dem nadelfreien IRI Filler-System</td>
+                  <td>45 Min.</td>
+                  <td>€199</td>
+                  <td>24</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="1"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td>Präzise Konturierung der Lippen mit dem IRI Filler-System</td>
+                  <td>30 Min.</td>
+                  <td>€149</td>
+                  <td>22</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="2"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Kombi-Behandlung</td>
+                  <td>Kombination aus Volumen und Konturierung für optimale Ergebnisse</td>
+                  <td>60 Min.</td>
+                  <td>€299</td>
+                  <td>20</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="3"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Auffrischung</td>
+                  <td>Auffrischungsbehandlung für bestehende Kunden</td>
+                  <td>30 Min.</td>
+                  <td>€129</td>
+                  <td>18</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="4"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Beratung</td>
+                  <td>Ausführliche Beratung zu IRI Behandlungen (kostenlos bei Buchung)</td>
+                  <td>30 Min.</td>
+                  <td>€0</td>
+                  <td>24</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-btn" data-id="5"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Behandlungsstatistiken</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Beliebteste Behandlungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="popularTreatmentsChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Durchschnittspreise</h4>
+                <div class="stats-chart-container">
+                  <canvas id="treatmentPricesChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Buchungen nach Behandlung</h4>
+                <div class="stats-chart-container">
+                  <canvas id="treatmentBookingsChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Kundenzufriedenheit</h4>
+                <div class="stats-chart-container">
+                  <canvas id="treatmentSatisfactionChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trainings Section -->
+        <div id="trainings-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Schulungen</h2>
+            <p>Verwalten Sie alle Schulungen und Zertifizierungen auf der YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="add-training-btn">Neue Schulung hinzufügen</button>
+            <button class="btn btn-secondary" id="manage-certifications-btn">Zertifizierungen verwalten</button>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Aktuelle Schulungen</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Schulung</th>
+                  <th>Typ</th>
+                  <th>Datum</th>
+                  <th>Ort</th>
+                  <th>Teilnehmer</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>IRI Filler-System Grundschulung</td>
+                  <td>Grundschulung</td>
+                  <td>05.05.2025</td>
+                  <td>Online</td>
+                  <td>12/20</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn manage-participants-btn" data-id="1"><i class="fas fa-users"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Filler-System Grundschulung</td>
+                  <td>Grundschulung</td>
+                  <td>15.05.2025</td>
+                  <td>Köln</td>
+                  <td>8/15</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn manage-participants-btn" data-id="2"><i class="fas fa-users"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Filler-System Grundschulung</td>
+                  <td>Grundschulung</td>
+                  <td>25.05.2025</td>
+                  <td>München</td>
+                  <td>5/15</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn manage-participants-btn" data-id="3"><i class="fas fa-users"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Advanced Techniques</td>
+                  <td>Fortgeschritten</td>
+                  <td>10.06.2025</td>
+                  <td>Köln</td>
+                  <td>6/10</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn manage-participants-btn" data-id="4"><i class="fas fa-users"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Master Class</td>
+                  <td>Master</td>
+                  <td>10.05.2025</td>
+                  <td>Köln</td>
+                  <td>3/8</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn manage-participants-btn" data-id="5"><i class="fas fa-users"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Zertifizierungen</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Studio</th>
+                  <th>Zertifizierung</th>
+                  <th>Ausgestellt am</th>
+                  <th>Gültig bis</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Filler-System Grundzertifizierung</td>
+                  <td>15.01.2024</td>
+                  <td>15.01.2026</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-certificate-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-certificate-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn revoke-certificate-btn" data-id="1"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Advanced Techniques</td>
+                  <td>20.03.2024</td>
+                  <td>20.03.2026</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-certificate-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-certificate-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn revoke-certificate-btn" data-id="2"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Skin Perfect Hamburg</td>
+                  <td>IRI Filler-System Grundzertifizierung</td>
+                  <td>10.02.2024</td>
+                  <td>10.02.2026</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-certificate-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-certificate-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn revoke-certificate-btn" data-id="3"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Beauty & Wellness Berlin</td>
+                  <td>IRI Filler-System Grundzertifizierung</td>
+                  <td>05.01.2024</td>
+                  <td>05.01.2026</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-certificate-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-certificate-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn revoke-certificate-btn" data-id="4"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Beauty & Wellness Berlin</td>
+                  <td>IRI Advanced Techniques</td>
+                  <td>15.02.2024</td>
+                  <td>15.02.2026</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn view-certificate-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-certificate-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn revoke-certificate-btn" data-id="5"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Schulungsstatistiken</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Schulungen nach Typ</h4>
+                <div class="stats-chart-container">
+                  <canvas id="trainingTypeChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Teilnehmerzahlen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="participantsChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Zertifizierungen nach Level</h4>
+                <div class="stats-chart-container">
+                  <canvas id="certificationLevelChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Schulungsbewertungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="trainingRatingsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div id="analytics-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Analysen</h2>
+            <p>Detaillierte Analysen und Berichte zur YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <div class="date-range-picker">
+              <label for="date-range">Zeitraum:</label>
+              <select id="date-range">
+                <option value="7">Letzte 7 Tage</option>
+                <option value="30" selected>Letzte 30 Tage</option>
+                <option value="90">Letzte 90 Tage</option>
+                <option value="365">Letztes Jahr</option>
+                <option value="custom">Benutzerdefiniert</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" id="export-report-btn">Bericht exportieren</button>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Plattformübersicht</h3>
+            </div>
+            <div class="analytics-overview">
+              <div class="analytics-card">
+                <div class="analytics-value">156</div>
+                <div class="analytics-label">Registrierte Kunden</div>
+                <div class="analytics-trend positive">+12% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="analytics-card">
+                <div class="analytics-value">24</div>
+                <div class="analytics-label">Aktive Studios</div>
+                <div class="analytics-trend positive">+8% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="analytics-card">
+                <div class="analytics-value">87</div>
+                <div class="analytics-label">Buchungen</div>
+                <div class="analytics-trend positive">+15% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="analytics-card">
+                <div class="analytics-value">€12.450</div>
+                <div class="analytics-label">Umsatz</div>
+                <div class="analytics-trend positive">+20% <i class="fas fa-arrow-up"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Umsatzanalyse</h3>
+            </div>
+            <div class="chart-container large-chart">
+              <canvas id="revenueAnalysisChart"></canvas>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Nutzeraktivität</h3>
+            </div>
+            <div class="chart-container large-chart">
+              <canvas id="userActivityChart"></canvas>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Buchungsanalyse</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Buchungen nach Wochentag</h4>
+                <div class="stats-chart-container">
+                  <canvas id="bookingsByDayChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Buchungen nach Tageszeit</h4>
+                <div class="stats-chart-container">
+                  <canvas id="bookingsByTimeChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Buchungen nach Behandlung</h4>
+                <div class="stats-chart-container">
+                  <canvas id="bookingsByTreatmentChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Buchungen nach Region</h4>
+                <div class="stats-chart-container">
+                  <canvas id="bookingsByRegionChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Leistungskennzahlen</h3>
+            </div>
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <h4>Durchschnittlicher Bestellwert</h4>
+                <div class="kpi-value">€143</div>
+                <div class="kpi-trend positive">+5% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="kpi-card">
+                <h4>Konversionsrate</h4>
+                <div class="kpi-value">8.2%</div>
+                <div class="kpi-trend positive">+1.5% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="kpi-card">
+                <h4>Kundenbindungsrate</h4>
+                <div class="kpi-value">76%</div>
+                <div class="kpi-trend positive">+3% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="kpi-card">
+                <h4>Durchschnittliche Bewertung</h4>
+                <div class="kpi-value">4.8/5</div>
+                <div class="kpi-trend positive">+0.2 <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="kpi-card">
+                <h4>Stornierungsrate</h4>
+                <div class="kpi-value">3.5%</div>
+                <div class="kpi-trend negative">+0.5% <i class="fas fa-arrow-up"></i></div>
+              </div>
+              <div class="kpi-card">
+                <h4>Durchschnittliche Sitzungsdauer</h4>
+                <div class="kpi-value">8:45 Min</div>
+                <div class="kpi-trend positive">+1:20 Min <i class="fas fa-arrow-up"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Einstellungen</h2>
+            <p>Verwalten Sie die Einstellungen der YAVU Plattform.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Allgemeine Einstellungen</h3>
+            </div>
+            <form id="general-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="platform-name">Plattformname</label>
+                <input type="text" id="platform-name" name="platform-name" value="YAVU IRI Filler-System" />
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Kontakt-E-Mail</label>
+                <input type="email" id="contact-email" name="contact-email" value="info@yavu.de" />
+              </div>
+              <div class="form-group">
+                <label for="support-phone">Support-Telefon</label>
+                <input type="tel" id="support-phone" name="support-phone" value="+49 123 4567890" />
+              </div>
+              <div class="form-group">
+                <label for="default-language">Standardsprache</label>
+                <select id="default-language" name="default-language">
+                  <option value="de" selected>Deutsch</option>
+                  <option value="en">Englisch</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="timezone">Zeitzone</label>
+                <select id="timezone" name="timezone">
+                  <option value="Europe/Berlin" selected>Berlin (GMT+1)</option>
+                  <option value="Europe/London">London (GMT)</option>
+                  <option value="America/New_York">New York (GMT-5)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>E-Mail-Einstellungen</h3>
+            </div>
+            <form id="email-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="smtp-server">SMTP-Server</label>
+                <input type="text" id="smtp-server" name="smtp-server" value="smtp.yavu.de" />
+              </div>
+              <div class="form-group">
+                <label for="smtp-port">SMTP-Port</label>
+                <input type="number" id="smtp-port" name="smtp-port" value="587" />
+              </div>
+              <div class="form-group">
+                <label for="smtp-username">SMTP-Benutzername</label>
+                <input type="text" id="smtp-username" name="smtp-username" value="noreply@yavu.de" />
+              </div>
+              <div class="form-group">
+                <label for="smtp-password">SMTP-Passwort</label>
+                <input type="password" id="smtp-password" name="smtp-password" value="********" />
+              </div>
+              <div class="form-group">
+                <label for="sender-name">Absendername</label>
+                <input type="text" id="sender-name" name="sender-name" value="YAVU IRI Filler-System" />
+              </div>
+              <div class="form-group">
+                <label for="sender-email">Absender-E-Mail</label>
+                <input type="email" id="sender-email" name="sender-email" value="noreply@yavu.de" />
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Zahlungseinstellungen</h3>
+            </div>
+            <form id="payment-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="currency">Währung</label>
+                <select id="currency" name="currency">
+                  <option value="EUR" selected>Euro (€)</option>
+                  <option value="USD">US-Dollar ($)</option>
+                  <option value="GBP">Britisches Pfund (£)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tax-rate">Mehrwertsteuersatz</label>
+                <input type="number" id="tax-rate" name="tax-rate" value="19" min="0" max="100" step="0.1" />
+              </div>
+              <div class="form-group">
+                <label for="payment-provider">Zahlungsanbieter</label>
+                <select id="payment-provider" name="payment-provider">
+                  <option value="stripe" selected>Stripe</option>
+                  <option value="paypal">PayPal</option>
+                  <option value="klarna">Klarna</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="api-key">API-Schlüssel</label>
+                <input type="password" id="api-key" name="api-key" value="********" />
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="enable-online-payments" name="enable-online-payments" checked />
+                <label for="enable-online-payments">Online-Zahlungen aktivieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="require-deposit" name="require-deposit" />
+                <label for="require-deposit">Anzahlung bei Buchung verlangen</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Sicherheitseinstellungen</h3>
+            </div>
+            <form id="security-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="password-policy">Passwortrichtlinie</label>
+                <select id="password-policy" name="password-policy">
+                  <option value="standard">Standard (min. 8 Zeichen)</option>
+                  <option value="strong" selected>Stark (min. 10 Zeichen, Groß-/Kleinbuchstaben, Zahlen, Sonderzeichen)</option>
+                  <option value="very-strong">Sehr stark (min. 12 Zeichen, Groß-/Kleinbuchstaben, Zahlen, Sonderzeichen)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="session-timeout">Sitzungs-Timeout (Minuten)</label>
+                <input type="number" id="session-timeout" name="session-timeout" value="30" min="5" max="120" />
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="enable-2fa" name="enable-2fa" checked />
+                <label for="enable-2fa">Zwei-Faktor-Authentifizierung für Admins aktivieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="enable-2fa-studios" name="enable-2fa-studios" />
+                <label for="enable-2fa-studios">Zwei-Faktor-Authentifizierung für Studios aktivieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="enable-2fa-customers" name="enable-2fa-customers" />
+                <label for="enable-2fa-customers">Zwei-Faktor-Authentifizierung für Kunden aktivieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="force-ssl" name="force-ssl" checked />
+                <label for="force-ssl">SSL erzwingen</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Studio Modal -->
+    <div class="modal" id="addStudioModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeAddStudioModal">&times;</span>
+        <h2 class="modal-title">Neues Studio hinzufügen</h2>
+        <form id="addStudioForm">
+          <div class="form-group">
+            <label for="studio-name">Studioname</label>
+            <input type="text" id="studio-name" name="studio-name" required />
+          </div>
+          <div class="form-group">
+            <label for="studio-address">Adresse</label>
+            <input type="text" id="studio-address" name="studio-address" required />
+          </div>
+          <div class="form-group">
+            <label for="studio-city">Stadt</label>
+            <input type="text" id="studio-city" name="studio-city" required />
+          </div>
+          <div class="form-group">
+            <label for="studio-zip">PLZ</label>
+            <input type="text" id="studio-zip" name="studio-zip" required />
+          </div>
+          <div class="form-group">
+            <label for="studio-email">E-Mail</label>
+            <input type="email" id="studio-email" name="studio-email" required />
+          </div>
+          <div class="form-group">
+            <label for="studio-phone">Telefon</label>
+            <input type="tel" id="studio-phone" name="studio-phone" required />
+          </div>
+          <div class="form-group">
+            <label for="studio-website">Website</label>
+            <input type="url" id="studio-website" name="studio-website" />
+          </div>
+          <div class="form-group">
+            <label for="studio-status">Status</label>
+            <select id="studio-status" name="studio-status">
+              <option value="active">Aktiv</option>
+              <option value="pending" selected>Prüfung</option>
+              <option value="inactive">Inaktiv</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Studio hinzufügen</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal" id="addUserModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeAddUserModal">&times;</span>
+        <h2 class="modal-title">Neuen Benutzer hinzufügen</h2>
+        <form id="addUserForm">
+          <div class="form-group">
+            <label for="user-firstname">Vorname</label>
+            <input type="text" id="user-firstname" name="user-firstname" required />
+          </div>
+          <div class="form-group">
+            <label for="user-lastname">Nachname</label>
+            <input type="text" id="user-lastname" name="user-lastname" required />
+          </div>
+          <div class="form-group">
+            <label for="user-email">E-Mail</label>
+            <input type="email" id="user-email" name="user-email" required />
+          </div>
+          <div class="form-group">
+            <label for="user-phone">Telefon</label>
+            <input type="tel" id="user-phone" name="user-phone" />
+          </div>
+          <div class="form-group">
+            <label for="user-role">Rolle</label>
+            <select id="user-role" name="user-role">
+              <option value="customer" selected>Kunde</option>
+              <option value="studio">Studio</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="user-status">Status</label>
+            <select id="user-status" name="user-status">
+              <option value="active">Aktiv</option>
+              <option value="pending" selected>Verifizierung</option>
+              <option value="inactive">Inaktiv</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="user-password">Passwort</label>
+            <input type="password" id="user-password" name="user-password" required />
+          </div>
+          <div class="form-group">
+            <label for="user-password-confirm">Passwort bestätigen</label>
+            <input type="password" id="user-password-confirm" name="user-password-confirm" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Benutzer hinzufügen</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Treatment Modal -->
+    <div class="modal" id="addTreatmentModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeAddTreatmentModal">&times;</span>
+        <h2 class="modal-title">Neue Behandlung hinzufügen</h2>
+        <form id="addTreatmentForm">
+          <div class="form-group">
+            <label for="treatment-name">Behandlungsname</label>
+            <input type="text" id="treatment-name" name="treatment-name" required />
+          </div>
+          <div class="form-group">
+            <label for="treatment-description">Beschreibung</label>
+            <textarea id="treatment-description" name="treatment-description" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="treatment-duration">Durchschnittsdauer (Minuten)</label>
+            <input type="number" id="treatment-duration" name="treatment-duration" min="15" step="15" required />
+          </div>
+          <div class="form-group">
+            <label for="treatment-price">Empfohlener Preis (€)</label>
+            <input type="number" id="treatment-price" name="treatment-price" min="0" step="1" required />
+          </div>
+          <div class="form-group">
+            <label for="treatment-image">Bild</label>
+            <input type="file" id="treatment-image" name="treatment-image" accept="image/*" />
+          </div>
+          <div class="form-group">
+            <label for="treatment-status">Status</label>
+            <select id="treatment-status" name="treatment-status">
+              <option value="active" selected>Aktiv</option>
+              <option value="inactive">Inaktiv</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Behandlung hinzufügen</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Training Modal -->
+    <div class="modal" id="addTrainingModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeAddTrainingModal">&times;</span>
+        <h2 class="modal-title">Neue Schulung hinzufügen</h2>
+        <form id="addTrainingForm">
+          <div class="form-group">
+            <label for="training-name">Schulungsname</label>
+            <input type="text" id="training-name" name="training-name" required />
+          </div>
+          <div class="form-group">
+            <label for="training-type">Typ</label>
+            <select id="training-type" name="training-type">
+              <option value="basic" selected>Grundschulung</option>
+              <option value="advanced">Fortgeschritten</option>
+              <option value="master">Master</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="training-date">Datum</label>
+            <input type="date" id="training-date" name="training-date" required />
+          </div>
+          <div class="form-group">
+            <label for="training-time">Uhrzeit</label>
+            <input type="time" id="training-time" name="training-time" required />
+          </div>
+          <div class="form-group">
+            <label for="training-location">Ort</label>
+            <input type="text" id="training-location" name="training-location" required />
+          </div>
+          <div class="form-group">
+            <label for="training-capacity">Maximale Teilnehmerzahl</label>
+            <input type="number" id="training-capacity" name="training-capacity" min="1" required />
+          </div>
+          <div class="form-group">
+            <label for="training-price">Preis (€)</label>
+            <input type="number" id="training-price" name="training-price" min="0" step="1" required />
+          </div>
+          <div class="form-group">
+            <label for="training-description">Beschreibung</label>
+            <textarea id="training-description" name="training-description" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Schulung hinzufügen</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Navigation
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        const dashboardContents = document.querySelectorAll('.dashboard-content');
+        
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === 'index.html') return;
+            
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Hide all dashboard contents
+            dashboardContents.forEach(content => content.classList.remove('active'));
+            
+            // Show corresponding content
+            const targetId = this.id.replace('nav-', '') + '-section';
+            document.getElementById(targetId)?.classList.add('active');
+          });
+        });
+        
+        // Initialize dashboard as active
+        document.getElementById('dashboard-section').classList.add('active');
+        
+        // View all studios
+        document.getElementById('view-all-studios')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Hide all dashboard contents
+          dashboardContents.forEach(content => content.classList.remove('active'));
+          
+          // Show studios section
+          document.getElementById('studios-section').classList.add('active');
+          
+          // Update navigation
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.getElementById('nav-studios').classList.add('active');
+        });
+        
+        // View all users
+        document.getElementById('view-all-users')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Hide all dashboard contents
+          dashboardContents.forEach(content => content.classList.remove('active'));
+          
+          // Show users section
+          document.getElementById('users-section').classList.add('active');
+          
+          // Update navigation
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.getElementById('nav-users').classList.add('active');
+        });
+        
+        // Add Studio Modal
+        const addStudioModal = document.getElementById('addStudioModal');
+        const closeAddStudioModal = document.getElementById('closeAddStudioModal');
+        
+        // Open add studio modal
+        document.getElementById('add-studio-btn')?.addEventListener('click', function() {
+          addStudioModal.style.display = 'block';
+        });
+        
+        // Close add studio modal
+        closeAddStudioModal?.addEventListener('click', function() {
+          addStudioModal.style.display = 'none';
+        });
+        
+        // Add studio form submission
+        document.getElementById('addStudioForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('studio-name').value;
+          const city = document.getElementById('studio-city').value;
+          const email = document.getElementById('studio-email').value;
+          
+          if (name && city && email) {
+            alert(`Studio "${name}" wurde erfolgreich hinzugefügt.`);
+            addStudioModal.style.display = 'none';
+            this.reset();
+          }
+        });
+        
+        // Add User Modal
+        const addUserModal = document.getElementById('addUserModal');
+        const closeAddUserModal = document.getElementById('closeAddUserModal');
+        
+        // Open add user modal
+        document.getElementById('add-user-btn')?.addEventListener('click', function() {
+          addUserModal.style.display = 'block';
+        });
+        
+        // Close add user modal
+        closeAddUserModal?.addEventListener('click', function() {
+          addUserModal.style.display = 'none';
+        });
+        
+        // Add user form submission
+        document.getElementById('addUserForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const firstname = document.getElementById('user-firstname').value;
+          const lastname = document.getElementById('user-lastname').value;
+          const email = document.getElementById('user-email').value;
+          const password = document.getElementById('user-password').value;
+          const passwordConfirm = document.getElementById('user-password-confirm').value;
+          
+          if (firstname && lastname && email && password && password === passwordConfirm) {
+            alert(`Benutzer "${firstname} ${lastname}" wurde erfolgreich hinzugefügt.`);
+            addUserModal.style.display = 'none';
+            this.reset();
+          } else if (password !== passwordConfirm) {
+            alert('Die Passwörter stimmen nicht überein.');
+          }
+        });
+        
+        // Add Treatment Modal
+        const addTreatmentModal = document.getElementById('addTreatmentModal');
+        const closeAddTreatmentModal = document.getElementById('closeAddTreatmentModal');
+        
+        // Open add treatment modal
+        document.getElementById('add-treatment-btn')?.addEventListener('click', function() {
+          addTreatmentModal.style.display = 'block';
+        });
+        
+        // Close add treatment modal
+        closeAddTreatmentModal?.addEventListener('click', function() {
+          addTreatmentModal.style.display = 'none';
+        });
+        
+        // Add treatment form submission
+        document.getElementById('addTreatmentForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('treatment-name').value;
+          const description = document.getElementById('treatment-description').value;
+          const duration = document.getElementById('treatment-duration').value;
+          const price = document.getElementById('treatment-price').value;
+          
+          if (name && description && duration && price) {
+            alert(`Behandlung "${name}" wurde erfolgreich hinzugefügt.`);
+            addTreatmentModal.style.display = 'none';
+            this.reset();
+          }
+        });
+        
+        // Add Training Modal
+        const addTrainingModal = document.getElementById('addTrainingModal');
+        const closeAddTrainingModal = document.getElementById('closeAddTrainingModal');
+        
+        // Open add training modal
+        document.getElementById('add-training-btn')?.addEventListener('click', function() {
+          addTrainingModal.style.display = 'block';
+        });
+        
+        // Close add training modal
+        closeAddTrainingModal?.addEventListener('click', function() {
+          addTrainingModal.style.display = 'none';
+        });
+        
+        // Add training form submission
+        document.getElementById('addTrainingForm')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('training-name').value;
+          const type = document.getElementById('training-type').value;
+          const date = document.getElementById('training-date').value;
+          const location = document.getElementById('training-location').value;
+          
+          if (name && type && date && location) {
+            alert(`Schulung "${name}" wurde erfolgreich hinzugefügt.`);
+            addTrainingModal.style.display = 'none';
+            this.reset();
+          }
+        });
+        
+        // Manage certifications
+        document.getElementById('manage-certifications-btn')?.addEventListener('click', function() {
+          alert('Zertifizierungen verwalten wird geöffnet.');
+        });
+        
+        // Export report
+        document.getElementById('export-report-btn')?.addEventListener('click', function() {
+          const dateRange = document.getElementById('date-range').value;
+          alert(`Bericht für die letzten ${dateRange} Tage wird exportiert.`);
+        });
+        
+        // Studio search
+        document.getElementById('studio-search')?.addEventListener('input', function() {
+          // In a real implementation, this would filter the studio list
+          console.log(`Suche nach: ${this.value}`);
+        });
+        
+        // Studio filter
+        document.getElementById('studio-filter')?.addEventListener('change', function() {
+          // In a real implementation, this would filter the studio list
+          console.log(`Filter: ${this.value}`);
+        });
+        
+        // User search
+        document.getElementById('user-search')?.addEventListener('input', function() {
+          // In a real implementation, this would filter the user list
+          console.log(`Suche nach: ${this.value}`);
+        });
+        
+        // User role filter
+        document.getElementById('user-role-filter')?.addEventListener('change', function() {
+          // In a real implementation, this would filter the user list
+          console.log(`Rollenfilter: ${this.value}`);
+        });
+        
+        // User status filter
+        document.getElementById('user-status-filter')?.addEventListener('change', function() {
+          // In a real implementation, this would filter the user list
+          console.log(`Statusfilter: ${this.value}`);
+        });
+        
+        // Treatment search
+        document.getElementById('treatment-search')?.addEventListener('input', function() {
+          // In a real implementation, this would filter the treatment list
+          console.log(`Suche nach: ${this.value}`);
+        });
+        
+        // View details buttons
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Details für Eintrag mit ID ${this.dataset.id} werden angezeigt.`);
+          });
+        });
+        
+        // Edit buttons
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Eintrag mit ID ${this.dataset.id} bearbeiten wird geöffnet.`);
+          });
+        });
+        
+        // Deactivate buttons
+        document.querySelectorAll('.deactivate-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm(`Sind Sie sicher, dass Sie den Eintrag mit der ID ${this.dataset.id} deaktivieren möchten?`)) {
+              // In a real implementation, this would update the status
+              this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+              this.closest('tr').querySelector('.status-badge').textContent = 'Inaktiv';
+              this.closest('tr').querySelector('.status-badge').className = 'status-badge status-cancelled';
+            }
+          });
+        });
+        
+        // Approve buttons
+        document.querySelectorAll('.approve-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm(`Sind Sie sicher, dass Sie den Eintrag mit der ID ${this.dataset.id} genehmigen möchten?`)) {
+              // In a real implementation, this would update the status
+              this.innerHTML = '<i class="fas fa-toggle-on"></i>';
+              this.className = 'action-btn deactivate-btn';
+              this.closest('tr').querySelector('.status-badge').textContent = 'Aktiv';
+              this.closest('tr').querySelector('.status-badge').className = 'status-badge status-confirmed';
+            }
+          });
+        });
+        
+        // Manage participants buttons
+        document.querySelectorAll('.manage-participants-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Teilnehmer für Schulung mit ID ${this.dataset.id} verwalten wird geöffnet.`);
+          });
+        });
+        
+        // View certificate buttons
+        document.querySelectorAll('.view-certificate-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Zertifikat mit ID ${this.dataset.id} wird angezeigt.`);
+          });
+        });
+        
+        // Edit certificate buttons
+        document.querySelectorAll('.edit-certificate-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Zertifikat mit ID ${this.dataset.id} bearbeiten wird geöffnet.`);
+          });
+        });
+        
+        // Revoke certificate buttons
+        document.querySelectorAll('.revoke-certificate-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm(`Sind Sie sicher, dass Sie das Zertifikat mit der ID ${this.dataset.id} widerrufen möchten?`)) {
+              // In a real implementation, this would update the status
+              this.closest('tr').querySelector('.status-badge').textContent = 'Widerrufen';
+              this.closest('tr').querySelector('.status-badge').className = 'status-badge status-cancelled';
+            }
+          });
+        });
+        
+        // Settings forms
+        document.getElementById('general-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Allgemeine Einstellungen wurden gespeichert.');
+        });
+        
+        document.getElementById('email-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('E-Mail-Einstellungen wurden gespeichert.');
+        });
+        
+        document.getElementById('payment-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Zahlungseinstellungen wurden gespeichert.');
+        });
+        
+        document.getElementById('security-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Sicherheitseinstellungen wurden gespeichert.');
+        });
+        
+        // Initialize charts
+        // Registrations Chart
+        const registrationsChart = document.getElementById('registrationsChart');
+        if (registrationsChart) {
+          new Chart(
+            registrationsChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Neue Registrierungen',
+                    data: [12, 19, 15, 25, 22, 30],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Bookings Chart
+        const bookingsChart = document.getElementById('bookingsChart');
+        if (bookingsChart) {
+          new Chart(
+            bookingsChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Buchungen',
+                    data: [65, 78, 90, 81, 95, 87],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Revenue Chart
+        const revenueChart = document.getElementById('revenueChart');
+        if (revenueChart) {
+          new Chart(
+            revenueChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Umsatz',
+                    data: [8500, 9200, 10500, 9800, 11200, 12450],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      callback: function(value) {
+                        return '€' + value;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // Active Users Chart
+        const activeUsersChart = document.getElementById('activeUsersChart');
+        if (activeUsersChart) {
+          new Chart(
+            activeUsersChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Aktive Nutzer',
+                    data: [45, 60, 75, 85, 95, 110],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Studio Location Chart
+        const studioLocationChart = document.getElementById('studioLocationChart');
+        if (studioLocationChart) {
+          new Chart(
+            studioLocationChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Berlin', 'Hamburg', 'München', 'Köln', 'Frankfurt', 'Andere'],
+                datasets: [
+                  {
+                    data: [5, 4, 4, 3, 2, 6],
+                    backgroundColor: ['#d4af37', '#333', '#555', '#777', '#999', '#bbb']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Studio Certification Chart
+        const studioCertificationChart = document.getElementById('studioCertificationChart');
+        if (studioCertificationChart) {
+          new Chart(
+            studioCertificationChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Grundzertifizierung', 'Advanced', 'Master', 'Keine'],
+                datasets: [
+                  {
+                    data: [15, 6, 2, 1],
+                    backgroundColor: ['#d4af37', '#333', '#555', '#777']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // New Studios Chart
+        const newStudiosChart = document.getElementById('newStudiosChart');
+        if (newStudiosChart) {
+          new Chart(
+            newStudiosChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Neue Studios',
+                    data: [3, 4, 2, 5, 3, 2],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Studio Ratings Chart
+        const studioRatingsChart = document.getElementById('studioRatingsChart');
+        if (studioRatingsChart) {
+          new Chart(
+            studioRatingsChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['5 Sterne', '4 Sterne', '3 Sterne', '2 Sterne', '1 Stern'],
+                datasets: [
+                  {
+                    label: 'Anzahl Bewertungen',
+                    data: [120, 65, 25, 10, 5],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y'
+              }
+            }
+          );
+        }
+        
+        // User Role Chart
+        const userRoleChart = document.getElementById('userRoleChart');
+        if (userRoleChart) {
+          new Chart(
+            userRoleChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Kunden', 'Studios', 'Admins'],
+                datasets: [
+                  {
+                    data: [156, 24, 3],
+                    backgroundColor: ['#d4af37', '#333', '#555']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // New Users Chart
+        const newUsersChart = document.getElementById('newUsersChart');
+        if (newUsersChart) {
+          new Chart(
+            newUsersChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Neue Benutzer',
+                    data: [15, 20, 25, 30, 35, 40],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Active Users Time Chart
+        const activeUsersTimeChart = document.getElementById('activeUsersTimeChart');
+        if (activeUsersTimeChart) {
+          new Chart(
+            activeUsersTimeChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+                datasets: [
+                  {
+                    label: 'Aktive Benutzer',
+                    data: [85, 90, 88, 95, 100, 75, 60],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // User Region Chart
+        const userRegionChart = document.getElementById('userRegionChart');
+        if (userRegionChart) {
+          new Chart(
+            userRegionChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Berlin', 'Hamburg', 'München', 'Köln', 'Frankfurt', 'Andere'],
+                datasets: [
+                  {
+                    data: [35, 25, 30, 20, 15, 31],
+                    backgroundColor: ['#d4af37', '#333', '#555', '#777', '#999', '#bbb']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Popular Treatments Chart
+        const popularTreatmentsChart = document.getElementById('popularTreatmentsChart');
+        if (popularTreatmentsChart) {
+          new Chart(
+            popularTreatmentsChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['IRI Lippen-Volumen', 'IRI Kontur-Behandlung', 'IRI Kombi-Behandlung', 'IRI Auffrischung', 'IRI Beratung'],
+                datasets: [
+                  {
+                    label: 'Anzahl Buchungen',
+                    data: [45, 30, 25, 20, 15],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y'
+              }
+            }
+          );
+        }
+        
+        // Treatment Prices Chart
+        const treatmentPricesChart = document.getElementById('treatmentPricesChart');
+        if (treatmentPricesChart) {
+          new Chart(
+            treatmentPricesChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['IRI Lippen-Volumen', 'IRI Kontur-Behandlung', 'IRI Kombi-Behandlung', 'IRI Auffrischung', 'IRI Beratung'],
+                datasets: [
+                  {
+                    label: 'Durchschnittspreis (€)',
+                    data: [199, 149, 299, 129, 0],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Treatment Bookings Chart
+        const treatmentBookingsChart = document.getElementById('treatmentBookingsChart');
+        if (treatmentBookingsChart) {
+          new Chart(
+            treatmentBookingsChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'IRI Lippen-Volumen',
+                    data: [25, 30, 35, 28, 32, 38],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  },
+                  {
+                    label: 'IRI Kontur-Behandlung',
+                    data: [15, 18, 20, 22, 25, 28],
+                    borderColor: '#333',
+                    backgroundColor: 'rgba(51, 51, 51, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Treatment Satisfaction Chart
+        const treatmentSatisfactionChart = document.getElementById('treatmentSatisfactionChart');
+        if (treatmentSatisfactionChart) {
+          new Chart(
+            treatmentSatisfactionChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['IRI Lippen-Volumen', 'IRI Kontur-Behandlung', 'IRI Kombi-Behandlung', 'IRI Auffrischung', 'IRI Beratung'],
+                datasets: [
+                  {
+                    label: 'Durchschnittliche Bewertung',
+                    data: [4.8, 4.7, 4.9, 4.6, 4.5],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    min: 0,
+                    max: 5
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // Training Type Chart
+        const trainingTypeChart = document.getElementById('trainingTypeChart');
+        if (trainingTypeChart) {
+          new Chart(
+            trainingTypeChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Grundschulung', 'Advanced', 'Master'],
+                datasets: [
+                  {
+                    data: [15, 8, 5],
+                    backgroundColor: ['#d4af37', '#333', '#555']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Participants Chart
+        const participantsChart = document.getElementById('participantsChart');
+        if (participantsChart) {
+          new Chart(
+            participantsChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Teilnehmer',
+                    data: [12, 15, 18, 20, 25, 30],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Certification Level Chart
+        const certificationLevelChart = document.getElementById('certificationLevelChart');
+        if (certificationLevelChart) {
+          new Chart(
+            certificationLevelChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Grundzertifizierung', 'Advanced', 'Master'],
+                datasets: [
+                  {
+                    data: [18, 8, 3],
+                    backgroundColor: ['#d4af37', '#333', '#555']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Training Ratings Chart
+        const trainingRatingsChart = document.getElementById('trainingRatingsChart');
+        if (trainingRatingsChart) {
+          new Chart(
+            trainingRatingsChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['Grundschulung', 'Advanced', 'Master'],
+                datasets: [
+                  {
+                    label: 'Durchschnittliche Bewertung',
+                    data: [4.7, 4.8, 4.9],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    min: 0,
+                    max: 5
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // Revenue Analysis Chart
+        const revenueAnalysisChart = document.getElementById('revenueAnalysisChart');
+        if (revenueAnalysisChart) {
+          new Chart(
+            revenueAnalysisChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Umsatz',
+                    data: [8500, 9200, 10500, 9800, 11200, 12450],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  },
+                  {
+                    label: 'Kosten',
+                    data: [5000, 5200, 5500, 5800, 6000, 6200],
+                    borderColor: '#333',
+                    backgroundColor: 'rgba(51, 51, 51, 0.1)',
+                    tension: 0.3
+                  },
+                  {
+                    label: 'Gewinn',
+                    data: [3500, 4000, 5000, 4000, 5200, 6250],
+                    borderColor: '#555',
+                    backgroundColor: 'rgba(85, 85, 85, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      callback: function(value) {
+                        return '€' + value;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // User Activity Chart
+        const userActivityChart = document.getElementById('userActivityChart');
+        if (userActivityChart) {
+          new Chart(
+            userActivityChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+                datasets: [
+                  {
+                    label: 'Aktive Benutzer',
+                    data: [85, 90, 88, 95, 100, 75, 60],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  },
+                  {
+                    label: 'Neue Registrierungen',
+                    data: [5, 3, 4, 6, 8, 2, 1],
+                    borderColor: '#333',
+                    backgroundColor: 'rgba(51, 51, 51, 0.1)',
+                    tension: 0.3
+                  },
+                  {
+                    label: 'Buchungen',
+                    data: [12, 15, 14, 18, 20, 10, 8],
+                    borderColor: '#555',
+                    backgroundColor: 'rgba(85, 85, 85, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Bookings By Day Chart
+        const bookingsByDayChart = document.getElementById('bookingsByDayChart');
+        if (bookingsByDayChart) {
+          new Chart(
+            bookingsByDayChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+                datasets: [
+                  {
+                    label: 'Anzahl Buchungen',
+                    data: [12, 15, 14, 18, 20, 10, 8],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Bookings By Time Chart
+        const bookingsByTimeChart = document.getElementById('bookingsByTimeChart');
+        if (bookingsByTimeChart) {
+          new Chart(
+            bookingsByTimeChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['9-11', '11-13', '13-15', '15-17', '17-19'],
+                datasets: [
+                  {
+                    label: 'Anzahl Buchungen',
+                    data: [15, 25, 20, 30, 10],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Bookings By Treatment Chart
+        const bookingsByTreatmentChart = document.getElementById('bookingsByTreatmentChart');
+        if (bookingsByTreatmentChart) {
+          new Chart(
+            bookingsByTreatmentChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['IRI Lippen-Volumen', 'IRI Kontur-Behandlung', 'IRI Kombi-Behandlung', 'IRI Auffrischung', 'IRI Beratung'],
+                datasets: [
+                  {
+                    data: [45, 30, 25, 20, 15],
+                    backgroundColor: ['#d4af37', '#333', '#555', '#777', '#999']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Bookings By Region Chart
+        const bookingsByRegionChart = document.getElementById('bookingsByRegionChart');
+        if (bookingsByRegionChart) {
+          new Chart(
+            bookingsByRegionChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Berlin', 'Hamburg', 'München', 'Köln', 'Frankfurt', 'Andere'],
+                datasets: [
+                  {
+                    data: [25, 20, 18, 15, 12, 10],
+                    backgroundColor: ['#d4af37', '#333', '#555', '#777', '#999', '#bbb']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+          if (e.target === addStudioModal) {
+            addStudioModal.style.display = 'none';
+          }
+          if (e.target === addUserModal) {
+            addUserModal.style.display = 'none';
+          }
+          if (e.target === addTreatmentModal) {
+            addTreatmentModal.style.display = 'none';
+          }
+          if (e.target === addTrainingModal) {
+            addTrainingModal.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

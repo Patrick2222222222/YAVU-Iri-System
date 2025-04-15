@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YAVU - Kundenprofil</title>
+    <link rel="stylesheet" href="css/customer.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo">YAVU</span>
+        <span class="sidebar-subtitle">KUNDENPROFIL</span>
+      </div>
+      <div class="customer-info">
+        <div class="customer-avatar">K</div>
+        <div class="customer-details">
+          <h3>Max Mustermann</h3>
+          <p>Premium-Kunde</p>
+        </div>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" class="tab-button active" data-target="dashboardTab"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="appointmentsTab"
+            >Meine Termine</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="favoritesTab"
+            >Favoriten</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="historyTab"
+            >Behandlungshistorie</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="reviewsTab"
+            >Bewertungen</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="messagesTab"
+            >Nachrichten</a
+          >
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="profileTab"
+            >Mein Profil</a
+          >
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="#" class="logout-btn" id="logoutButton">Abmelden</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="top-bar">
+        <h1 class="page-title">Kundenprofil</h1>
+        <div class="notification-bell" id="notificationBell">2</div>
+        <!-- Notification Dropdown -->
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notification-item">
+            <b>Buchungsbestätigung</b>
+            <p>Ihr Termin am 15.03.2025 wurde bestätigt</p>
+            <small>04.03.2025, 10:15</small>
+          </div>
+          <div class="notification-item">
+            <b>Neues Studio in Ihrer Nähe</b>
+            <p>Beauty Lounge Köln ist jetzt verfügbar</p>
+            <small>01.03.2025, 09:30</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tab -->
+      <div id="dashboardTab" class="tab-content">
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <div class="welcome-content">
+            <h2>Willkommen zurück, Max!</h2>
+            <p>
+              Entdecken Sie die neuesten IRI Filler-Behandlungen bei Ihren
+              Lieblingsstudios.
+            </p>
+          </div>
+          <div class="welcome-action">
+            <button class="book-btn" id="newBookingBtn">
+              NEUEN TERMIN BUCHEN
+            </button>
+          </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <h2 class="section-title">IHRE NÄCHSTEN TERMINE</h2>
+        <div class="appointments-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+
+        <!-- Favorite Studios -->
+        <h2 class="section-title">IHRE FAVORISIERTEN STUDIOS</h2>
+        <div class="studios-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+
+        <!-- Special Offers -->
+        <h2 class="section-title">ANGEBOTE FÜR SIE</h2>
+        <div class="offers-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Appointments Tab -->
+      <div id="appointmentsTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">MEINE TERMINE</h2>
+          <button class="book-btn" id="appointmentsBookingBtn">
+            NEUEN TERMIN BUCHEN
+          </button>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="appointmentStatusFilter">Status:</label>
+            <select id="appointmentStatusFilter">
+              <option value="all">Alle Termine</option>
+              <option value="upcoming" selected>Kommende Termine</option>
+              <option value="completed">Abgeschlossene Termine</option>
+              <option value="cancelled">Stornierte Termine</option>
+            </select>
+          </div>
+          <button class="action-btn" id="applyAppointmentFilter">
+            FILTERN
+          </button>
+        </div>
+
+        <div class="all-appointments-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Favorites Tab -->
+      <div id="favoritesTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">MEINE FAVORISIERTEN STUDIOS</h2>
+          <button class="action-btn" id="findStudiosBtn">
+            STUDIOS ENTDECKEN
+          </button>
+        </div>
+
+        <div class="favorites-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- History Tab -->
+      <div id="historyTab" class="tab-content">
+        <h2 class="section-title">IHRE BEHANDLUNGSHISTORIE</h2>
+        <div class="table-container">
+          <table id="treatmentsTable">
+            <thead>
+              <tr>
+                <th>DATUM</th>
+                <th>BEHANDLUNG</th>
+                <th>STUDIO</th>
+                <th>BETREUER</th>
+                <th>AKTIONEN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Wird mit JavaScript gefüllt -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Reviews Tab -->
+      <div id="reviewsTab" class="tab-content">
+        <h2 class="section-title">IHRE ABGEGEBENEN BEWERTUNGEN</h2>
+        <div id="userReviewsContainer" class="reviews-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+
+        <h2 class="section-title">OFFENE BEWERTUNGEN</h2>
+        <div id="pendingReviewsContainer" class="pending-reviews-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div id="messagesTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">MEINE NACHRICHTEN</h2>
+        </div>
+
+        <div class="messages-filter">
+          <select id="messageFilter">
+            <option value="all">Alle Nachrichten</option>
+            <option value="unread">Ungelesene Nachrichten</option>
+            <option value="studios">Nachrichten von Studios</option>
+            <option value="system">Systemnachrichten</option>
+          </select>
+        </div>
+
+        <div id="messagesContainer" class="messages-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div id="profileTab" class="tab-content">
+        <h2 class="section-title">MEIN PROFIL</h2>
+        <div class="profile-container">
+          <form id="profileForm">
+            <div class="form-section">
+              <h3>Persönliche Informationen</h3>
+              <div class="form-group">
+                <label for="profileName">Name:</label>
+                <input
+                  type="text"
+                  id="profileName"
+                  value="Max Mustermann"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="profileEmail">E-Mail:</label>
+                <input
+                  type="email"
+                  id="profileEmail"
+                  value="max@example.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="profilePhone">Telefon:</label>
+                <input type="tel" id="profilePhone" value="+49 170 1234567" />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>Adresse</h3>
+              <div class="form-group">
+                <label for="profileStreet">Straße & Hausnummer:</label>
+                <input
+                  type="text"
+                  id="profileStreet"
+                  value="Musterstraße 123"
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="profileZip">PLZ:</label>
+                  <input type="text" id="profileZip" value="10115" />
+                </div>
+                <div class="form-group">
+                  <label for="profileCity">Ort:</label>
+                  <input type="text" id="profileCity" value="Berlin" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>Benachrichtigungen</h3>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notifyBookings" checked />
+                <label for="notifyBookings"
+                  >Benachrichtigungen zu Buchungen</label
+                >
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notifyOffers" checked />
+                <label for="notifyOffers"
+                  >Benachrichtigungen zu neuen Angeboten</label
+                >
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notifyNews" />
+                <label for="notifyNews"
+                  >Newsletter und allgemeine Neuigkeiten</label
+                >
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">PROFIL SPEICHERN</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Booking Modal -->
+      <div class="modal" id="bookingModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NEUE BUCHUNG</h2>
+          <form id="bookingForm">
+            <div class="form-group">
+              <label for="bookingStudio">Studio:</label>
+              <select id="bookingStudio" name="bookingStudio" required>
+                <option value="">Studio auswählen...</option>
+                <!-- Wird mit JavaScript gefüllt -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookingTreatment">Behandlung:</label>
+              <select id="bookingTreatment" name="bookingTreatment" required>
+                <option value="">Behandlung auswählen...</option>
+                <!-- Wird mit JavaScript gefüllt -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookingDate">Datum:</label>
+              <input type="date" id="bookingDate" name="bookingDate" required />
+            </div>
+            <div class="form-group">
+              <label for="bookingTime">Uhrzeit:</label>
+              <select id="bookingTime" name="bookingTime" required>
+                <option value="">Uhrzeit auswählen...</option>
+                <option value="09:00">09:00 Uhr</option>
+                <option value="09:30">09:30 Uhr</option>
+                <option value="10:00">10:00 Uhr</option>
+                <option value="10:30">10:30 Uhr</option>
+                <option value="11:00">11:00 Uhr</option>
+                <option value="11:30">11:30 Uhr</option>
+                <option value="12:00">12:00 Uhr</option>
+                <option value="12:30">12:30 Uhr</option>
+                <option value="13:00">13:00 Uhr</option>
+                <option value="13:30">13:30 Uhr</option>
+                <option value="14:00">14:00 Uhr</option>
+                <option value="14:30">14:30 Uhr</option>
+                <option value="15:00">15:00 Uhr</option>
+                <option value="15:30">15:30 Uhr</option>
+                <option value="16:00">16:00 Uhr</option>
+                <option value="16:30">16:30 Uhr</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookingNotes">Anmerkungen:</label>
+              <textarea id="bookingNotes" name="bookingNotes"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">TERMIN BUCHEN</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Review Modal -->
+      <div class="modal" id="reviewModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">BEWERTUNG ABGEBEN</h2>
+          <form id="reviewForm">
+            <input type="hidden" id="reviewBookingId" />
+            <div class="form-group">
+              <label>Studio:</label>
+              <div id="reviewStudioName" class="readonly-field"></div>
+            </div>
+            <div class="form-group">
+              <label>Behandlung:</label>
+              <div id="reviewTreatment" class="readonly-field"></div>
+            </div>
+            <div class="form-group">
+              <label>Bewertung:</label>
+              <div class="rating-input">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+                <input type="hidden" id="ratingValue" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="reviewComment">Kommentar:</label>
+              <textarea id="reviewComment" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">BEWERTUNG SENDEN</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Message Modal -->
+      <div class="modal" id="messageModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NACHRICHT SENDEN</h2>
+          <form id="messageForm">
+            <div class="form-group">
+              <label for="messageRecipient">An Studio:</label>
+              <select id="messageRecipient" required>
+                <option value="">Studio auswählen...</option>
+                <!-- Wird mit JavaScript gefüllt -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="messageSubject">Betreff:</label>
+              <input type="text" id="messageSubject" required />
+            </div>
+            <div class="form-group">
+              <label for="messageContent">Nachricht:</label>
+              <textarea id="messageContent" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">NACHRICHT SENDEN</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="main-footer">
+        © 2025 YAVU - IRI Filler-System | Kundenprofil v1.0
+      </div>
+    </div>
+
+    <!-- Firebase App (core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+
+    <!-- Deine Firebase-Konfiguration -->
+    <script src="js/firebase.js"></script>
+
+    <script src="data/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/customer.js"></script>
+  </body>
+</html>
+
+<!-- Einbindung des Script-Loaders in die HTML-Dateien -->
+<script src="../script-loader.js"></script>

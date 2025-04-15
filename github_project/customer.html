@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="YAVU IRI Filler-System - Kundendashboard für nadelfreie Hyaluron-Behandlungen"
+    />
+    <title>YAVU - Kundendashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <!-- Font Awesome für Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Chart.js für Diagramme -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">YAVU</div>
+          <div class="sidebar-subtitle">Kundendashboard</div>
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">K</div>
+          <div class="user-info">
+            <h3>Kunde</h3>
+            <p>kunde@example.com</p>
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+          <a href="#" id="nav-appointments"><i class="fas fa-calendar-alt"></i> Meine Termine</a>
+          <a href="#" id="nav-favorites"><i class="fas fa-heart"></i> Favoriten</a>
+          <a href="#" id="nav-history"><i class="fas fa-history"></i> Behandlungshistorie</a>
+          <a href="#" id="nav-profile"><i class="fas fa-user"></i> Profil</a>
+          <a href="#" id="nav-settings"><i class="fas fa-cog"></i> Einstellungen</a>
+          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Dashboard Overview -->
+        <div id="dashboard-section" class="dashboard-content active">
+          <div class="dashboard-header">
+            <h2>Willkommen zurück, Kunde!</h2>
+            <p>Hier finden Sie eine Übersicht Ihrer Aktivitäten und Termine.</p>
+          </div>
+
+          <div class="dashboard-overview">
+            <div class="overview-card">
+              <h3>2</h3>
+              <p>Kommende Termine</p>
+            </div>
+            <div class="overview-card">
+              <h3>5</h3>
+              <p>Abgeschlossene Behandlungen</p>
+            </div>
+            <div class="overview-card">
+              <h3>3</h3>
+              <p>Favorisierte Studios</p>
+            </div>
+            <div class="overview-card">
+              <h3>4.8</h3>
+              <p>Durchschnittliche Bewertung</p>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Kommende Termine</h3>
+              <a href="#" id="view-all-appointments" class="action-btn">Alle anzeigen</a>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Studio</th>
+                  <th>Behandlung</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20.04.2025</td>
+                  <td>14:30</td>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn reschedule-btn" data-id="1">Verschieben</button>
+                    <button class="action-btn cancel-btn" data-id="1">Stornieren</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>05.05.2025</td>
+                  <td>10:00</td>
+                  <td>Aesthetic Sense</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td><span class="status-badge status-pending">Ausstehend</span></td>
+                  <td>
+                    <button class="action-btn reschedule-btn" data-id="2">Verschieben</button>
+                    <button class="action-btn cancel-btn" data-id="2">Stornieren</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Favorisierte Studios</h3>
+              <a href="#" id="view-all-favorites" class="action-btn">Alle anzeigen</a>
+            </div>
+            <div class="favorites-grid">
+              <div class="favorite-card">
+                <h4>Beauty Lounge Köln</h4>
+                <p>Köln, Ehrenstraße 45</p>
+                <div class="favorite-rating">★★★★★</div>
+                <button class="btn btn-primary book-btn" data-studio="Beauty Lounge Köln">Termin buchen</button>
+              </div>
+              <div class="favorite-card">
+                <h4>Aesthetic Sense</h4>
+                <p>München, Maximilianstraße 12</p>
+                <div class="favorite-rating">★★★★☆</div>
+                <button class="btn btn-primary book-btn" data-studio="Aesthetic Sense">Termin buchen</button>
+              </div>
+              <div class="favorite-card">
+                <h4>Skin Perfect</h4>
+                <p>Hamburg, Jungfernstieg 22</p>
+                <div class="favorite-rating">★★★★★</div>
+                <button class="btn btn-primary book-btn" data-studio="Skin Perfect">Termin buchen</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Behandlungshistorie</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="treatmentHistoryChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appointments Section -->
+        <div id="appointments-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Meine Termine</h2>
+            <p>Verwalten Sie Ihre kommenden und vergangenen Termine.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Kommende Termine</h3>
+              <button class="btn btn-primary" id="new-appointment-btn">Neuen Termin buchen</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Studio</th>
+                  <th>Behandlung</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20.04.2025</td>
+                  <td>14:30</td>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn reschedule-btn" data-id="1">Verschieben</button>
+                    <button class="action-btn cancel-btn" data-id="1">Stornieren</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>05.05.2025</td>
+                  <td>10:00</td>
+                  <td>Aesthetic Sense</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td><span class="status-badge status-pending">Ausstehend</span></td>
+                  <td>
+                    <button class="action-btn reschedule-btn" data-id="2">Verschieben</button>
+                    <button class="action-btn cancel-btn" data-id="2">Stornieren</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Vergangene Termine</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Studio</th>
+                  <th>Behandlung</th>
+                  <th>Bewertung</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10.03.2025</td>
+                  <td>11:00</td>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>★★★★★</td>
+                  <td>
+                    <button class="action-btn review-btn" data-id="3">Bewerten</button>
+                    <button class="action-btn rebook-btn" data-id="3">Erneut buchen</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>15.02.2025</td>
+                  <td>15:30</td>
+                  <td>Skin Perfect</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td>★★★★☆</td>
+                  <td>
+                    <button class="action-btn review-btn" data-id="4">Bewerten</button>
+                    <button class="action-btn rebook-btn" data-id="4">Erneut buchen</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>05.01.2025</td>
+                  <td>13:00</td>
+                  <td>Aesthetic Sense</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>★★★★★</td>
+                  <td>
+                    <button class="action-btn review-btn" data-id="5">Bewerten</button>
+                    <button class="action-btn rebook-btn" data-id="5">Erneut buchen</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Meine Favoriten</h2>
+            <p>Verwalten Sie Ihre favorisierten Studios und Behandlungen.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Favorisierte Studios</h3>
+            </div>
+            <div class="favorites-grid">
+              <div class="favorite-card">
+                <h4>Beauty Lounge Köln</h4>
+                <p>Köln, Ehrenstraße 45</p>
+                <div class="favorite-rating">★★★★★</div>
+                <p>Luxuriöses Studio im Herzen von Köln, spezialisiert auf nadelfreie Hyaluron-Behandlungen.</p>
+                <div class="favorite-actions">
+                  <button class="btn btn-primary book-btn" data-studio="Beauty Lounge Köln">Termin buchen</button>
+                  <button class="action-btn remove-favorite-btn" data-id="1"><i class="fas fa-heart-broken"></i></button>
+                </div>
+              </div>
+              <div class="favorite-card">
+                <h4>Aesthetic Sense</h4>
+                <p>München, Maximilianstraße 12</p>
+                <div class="favorite-rating">★★★★☆</div>
+                <p>Premium-Studio mit umfassendem Angebot an nadelfreien Hyaluron-Behandlungen.</p>
+                <div class="favorite-actions">
+                  <button class="btn btn-primary book-btn" data-studio="Aesthetic Sense">Termin buchen</button>
+                  <button class="action-btn remove-favorite-btn" data-id="2"><i class="fas fa-heart-broken"></i></button>
+                </div>
+              </div>
+              <div class="favorite-card">
+                <h4>Skin Perfect</h4>
+                <p>Hamburg, Jungfernstieg 22</p>
+                <div class="favorite-rating">★★★★★</div>
+                <p>Modernes Studio mit Fokus auf innovative Schönheitsbehandlungen und personalisierte Beratung.</p>
+                <div class="favorite-actions">
+                  <button class="btn btn-primary book-btn" data-studio="Skin Perfect">Termin buchen</button>
+                  <button class="action-btn remove-favorite-btn" data-id="3"><i class="fas fa-heart-broken"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Favorisierte Behandlungen</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Behandlung</th>
+                  <th>Beschreibung</th>
+                  <th>Dauer</th>
+                  <th>Preis</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>Volumenaufbau der Lippen mit dem nadelfreien IRI Filler-System</td>
+                  <td>45 Min.</td>
+                  <td>€199</td>
+                  <td>
+                    <button class="btn btn-primary book-treatment-btn" data-treatment="IRI Lippen-Volumen">Buchen</button>
+                    <button class="action-btn remove-favorite-treatment-btn" data-id="1"><i class="fas fa-heart-broken"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td>Präzise Konturierung der Lippen mit dem IRI Filler-System</td>
+                  <td>30 Min.</td>
+                  <td>€149</td>
+                  <td>
+                    <button class="btn btn-primary book-treatment-btn" data-treatment="IRI Kontur-Behandlung">Buchen</button>
+                    <button class="action-btn remove-favorite-treatment-btn" data-id="2"><i class="fas fa-heart-broken"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- History Section -->
+        <div id="history-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Behandlungshistorie</h2>
+            <p>Übersicht Ihrer bisherigen Behandlungen und Ergebnisse.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Behandlungsübersicht</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="treatmentHistoryChartFull"></canvas>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Detaillierte Historie</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Studio</th>
+                  <th>Behandlung</th>
+                  <th>Ergebnis</th>
+                  <th>Bewertung</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10.03.2025</td>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>Sehr gut</td>
+                  <td>★★★★★</td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1">Details</button>
+                    <button class="action-btn rebook-btn" data-id="1">Erneut buchen</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>15.02.2025</td>
+                  <td>Skin Perfect</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td>Gut</td>
+                  <td>★★★★☆</td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2">Details</button>
+                    <button class="action-btn rebook-btn" data-id="2">Erneut buchen</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>05.01.2025</td>
+                  <td>Aesthetic Sense</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>Sehr gut</td>
+                  <td>★★★★★</td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3">Details</button>
+                    <button class="action-btn rebook-btn" data-id="3">Erneut buchen</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>10.12.2024</td>
+                  <td>Beauty Lounge Köln</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td>Sehr gut</td>
+                  <td>★★★★★</td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="4">Details</button>
+                    <button class="action-btn rebook-btn" data-id="4">Erneut buchen</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>15.11.2024</td>
+                  <td>Skin Perfect</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>Gut</td>
+                  <td>★★★★☆</td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="5">Details</button>
+                    <button class="action-btn rebook-btn" data-id="5">Erneut buchen</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Vorher-Nachher Vergleich</h3>
+            </div>
+            <div class="before-after-gallery">
+              <div class="before-after-item">
+                <div class="before-after-images">
+                  <div class="before-image">
+                    <img src="images/Testimonial 1.png" alt="Vorher" />
+                    <span class="image-label">Vorher</span>
+                  </div>
+                  <div class="after-image">
+                    <img src="images/Testimonial 1.png" alt="Nachher" />
+                    <span class="image-label">Nachher</span>
+                  </div>
+                </div>
+                <div class="before-after-info">
+                  <h4>IRI Lippen-Volumen</h4>
+                  <p>Behandlung am 10.03.2025 bei Beauty Lounge Köln</p>
+                </div>
+              </div>
+              <div class="before-after-item">
+                <div class="before-after-images">
+                  <div class="before-image">
+                    <img src="images/Testimonial 2.png" alt="Vorher" />
+                    <span class="image-label">Vorher</span>
+                  </div>
+                  <div class="after-image">
+                    <img src="images/Testimonial 2.png" alt="Nachher" />
+                    <span class="image-label">Nachher</span>
+                  </div>
+                </div>
+                <div class="before-after-info">
+                  <h4>IRI Kontur-Behandlung</h4>
+                  <p>Behandlung am 15.02.2025 bei Skin Perfect</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Mein Profil</h2>
+            <p>Verwalten Sie Ihre persönlichen Informationen und Einstellungen.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Persönliche Informationen</h3>
+              <button class="btn btn-primary" id="edit-profile-btn">Bearbeiten</button>
+            </div>
+            <div class="profile-info">
+              <div class="profile-avatar">
+                <div class="user-avatar large">K</div>
+                <button class="change-avatar-btn"><i class="fas fa-camera"></i></button>
+              </div>
+              <div class="profile-details">
+                <div class="profile-field">
+                  <label>Name:</label>
+                  <span id="profile-name">Kunde</span>
+                </div>
+                <div class="profile-field">
+                  <label>E-Mail:</label>
+                  <span id="profile-email">kunde@example.com</span>
+                </div>
+                <div class="profile-field">
+                  <label>Telefon:</label>
+                  <span id="profile-phone">+49 123 4567890</span>
+                </div>
+                <div class="profile-field">
+                  <label>Adresse:</label>
+                  <span id="profile-address">Musterstraße 123, 50667 Köln</span>
+                </div>
+                <div class="profile-field">
+                  <label>Geburtsdatum:</label>
+                  <span id="profile-birthdate">01.01.1990</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Passwort ändern</h3>
+            </div>
+            <form id="change-password-form" class="profile-form">
+              <div class="form-group">
+                <label for="current-password">Aktuelles Passwort</label>
+                <input type="password" id="current-password" name="current-password" required />
+              </div>
+              <div class="form-group">
+                <label for="new-password">Neues Passwort</label>
+                <input type="password" id="new-password" name="new-password" required />
+              </div>
+              <div class="form-group">
+                <label for="confirm-password">Passwort bestätigen</label>
+                <input type="password" id="confirm-password" name="confirm-password" required />
+              </div>
+              <button type="submit" class="btn btn-primary">Passwort ändern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Benachrichtigungseinstellungen</h3>
+            </div>
+            <form id="notification-settings-form" class="profile-form">
+              <div class="checkbox-group">
+                <input type="checkbox" id="email-notifications" name="email-notifications" checked />
+                <label for="email-notifications">E-Mail-Benachrichtigungen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="sms-notifications" name="sms-notifications" checked />
+                <label for="sms-notifications">SMS-Benachrichtigungen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="appointment-reminders" name="appointment-reminders" checked />
+                <label for="appointment-reminders">Terminerinnerungen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="marketing-emails" name="marketing-emails" />
+                <label for="marketing-emails">Marketing-E-Mails</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Einstellungen</h2>
+            <p>Passen Sie Ihre Kontoeinstellungen an.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Allgemeine Einstellungen</h3>
+            </div>
+            <form id="general-settings-form" class="profile-form">
+              <div class="form-group">
+                <label for="language">Sprache</label>
+                <select id="language" name="language">
+                  <option value="de" selected>Deutsch</option>
+                  <option value="en">Englisch</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="timezone">Zeitzone</label>
+                <select id="timezone" name="timezone">
+                  <option value="Europe/Berlin" selected>Berlin (GMT+1)</option>
+                  <option value="Europe/London">London (GMT)</option>
+                  <option value="America/New_York">New York (GMT-5)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Datenschutzeinstellungen</h3>
+            </div>
+            <form id="privacy-settings-form" class="profile-form">
+              <div class="checkbox-group">
+                <input type="checkbox" id="data-sharing" name="data-sharing" checked />
+                <label for="data-sharing">Daten mit Studios teilen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="analytics" name="analytics" checked />
+                <label for="analytics">Anonyme Nutzungsdaten teilen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="cookies" name="cookies" checked />
+                <label for="cookies">Cookies akzeptieren</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section danger-zone">
+            <div class="dashboard-section-header">
+              <h3>Konto löschen</h3>
+            </div>
+            <p>Wenn Sie Ihr Konto löschen, werden alle Ihre Daten unwiderruflich gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.</p>
+            <button class="btn btn-danger" id="delete-account-btn">Konto löschen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeBookingModal">&times;</span>
+        <h2 class="modal-title">Termin buchen</h2>
+        <form id="bookingForm">
+          <div class="form-group">
+            <label for="booking-studio">Studio</label>
+            <select id="booking-studio" name="booking-studio" required>
+              <option value="">Studio auswählen</option>
+              <option value="Beauty Lounge Köln">Beauty Lounge Köln</option>
+              <option value="Aesthetic Sense">Aesthetic Sense</option>
+              <option value="Skin Perfect">Skin Perfect</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="booking-treatment">Behandlung</label>
+            <select id="booking-treatment" name="booking-treatment" required>
+              <option value="">Behandlung auswählen</option>
+              <option value="IRI Lippen-Volumen">IRI Lippen-Volumen</option>
+              <option value="IRI Kontur-Behandlung">IRI Kontur-Behandlung</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="booking-date">Datum</label>
+            <input type="date" id="booking-date" name="booking-date" required />
+          </div>
+          <div class="form-group">
+            <label for="booking-time">Uhrzeit</label>
+            <select id="booking-time" name="booking-time" required>
+              <option value="">Uhrzeit auswählen</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="booking-notes">Anmerkungen</label>
+            <textarea id="booking-notes" name="booking-notes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Termin buchen</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeEditProfileModal">&times;</span>
+        <h2 class="modal-title">Profil bearbeiten</h2>
+        <form id="editProfileForm">
+          <div class="form-group">
+            <label for="edit-name">Name</label>
+            <input type="text" id="edit-name" name="edit-name" value="Kunde" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-email">E-Mail</label>
+            <input type="email" id="edit-email" name="edit-email" value="kunde@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-phone">Telefon</label>
+            <input type="tel" id="edit-phone" name="edit-phone" value="+49 123 4567890" />
+          </div>
+          <div class="form-group">
+            <label for="edit-address">Adresse</label>
+            <input type="text" id="edit-address" name="edit-address" value="Musterstraße 123, 50667 Köln" />
+          </div>
+          <div class="form-group">
+            <label for="edit-birthdate">Geburtsdatum</label>
+            <input type="date" id="edit-birthdate" name="edit-birthdate" value="1990-01-01" />
+          </div>
+          <button type="submit" class="btn btn-primary">Änderungen speichern</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeReviewModal">&times;</span>
+        <h2 class="modal-title">Bewertung abgeben</h2>
+        <form id="reviewForm">
+          <div class="form-group">
+            <label for="review-rating">Bewertung</label>
+            <div class="star-rating">
+              <input type="radio" id="star5" name="rating" value="5" /><label for="star5">★</label>
+              <input type="radio" id="star4" name="rating" value="4" /><label for="star4">★</label>
+              <input type="radio" id="star3" name="rating" value="3" /><label for="star3">★</label>
+              <input type="radio" id="star2" name="rating" value="2" /><label for="star2">★</label>
+              <input type="radio" id="star1" name="rating" value="1" /><label for="star1">★</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="review-title">Titel</label>
+            <input type="text" id="review-title" name="review-title" placeholder="Kurzer Titel für Ihre Bewertung" required />
+          </div>
+          <div class="form-group">
+            <label for="review-text">Ihre Erfahrung</label>
+            <textarea id="review-text" name="review-text" rows="5" placeholder="Beschreiben Sie Ihre Erfahrung mit der Behandlung" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="review-photo">Foto hochladen (optional)</label>
+            <input type="file" id="review-photo" name="review-photo" accept="image/*" />
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="review-anonymous" name="review-anonymous" />
+            <label for="review-anonymous">Anonym bewerten</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Bewertung abschicken</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Navigation
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        const dashboardContents = document.querySelectorAll('.dashboard-content');
+        
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === 'index.html') return;
+            
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Hide all dashboard contents
+            dashboardContents.forEach(content => content.classList.remove('active'));
+            
+            // Show corresponding content
+            const targetId = this.id.replace('nav-', '') + '-section';
+            document.getElementById(targetId)?.classList.add('active');
+          });
+        });
+        
+        // Initialize dashboard as active
+        document.getElementById('dashboard-section').classList.add('active');
+        
+        // View all appointments
+        document.getElementById('view-all-appointments')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Hide all dashboard contents
+          dashboardContents.forEach(content => content.classList.remove('active'));
+          
+          // Show appointments section
+          document.getElementById('appointments-section').classList.add('active');
+          
+          // Update navigation
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.getElementById('nav-appointments').classList.add('active');
+        });
+        
+        // View all favorites
+        document.getElementById('view-all-favorites')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Hide all dashboard contents
+          dashboardContents.forEach(content => content.classList.remove('active'));
+          
+          // Show favorites section
+          document.getElementById('favorites-section').classList.add('active');
+          
+          // Update navigation
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.getElementById('nav-favorites').classList.add('active');
+        });
+        
+        // Booking Modal
+        const bookingModal = document.getElementById('bookingModal');
+        const closeBookingModal = document.getElementById('closeBookingModal');
+        
+        // Open booking modal from book buttons
+        document.querySelectorAll('.book-btn, .book-treatment-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            bookingModal.style.display = 'block';
+            
+            // Pre-select studio or treatment if available
+            if (this.dataset.studio) {
+              document.getElementById('booking-studio').value = this.dataset.studio;
+            }
+            
+            if (this.dataset.treatment) {
+              document.getElementById('booking-treatment').value = this.dataset.treatment;
+            }
+          });
+        });
+        
+        // Open booking modal from new appointment button
+        document.getElementById('new-appointment-btn')?.addEventListener('click', function() {
+          bookingModal.style.display = 'block';
+        });
+        
+        // Close booking modal
+        closeBookingModal.addEventListener('click', function() {
+          bookingModal.style.display = 'none';
+        });
+        
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const studio = document.getElementById('booking-studio').value;
+          const treatment = document.getElementById('booking-treatment').value;
+          const date = document.getElementById('booking-date').value;
+          const time = document.getElementById('booking-time').value;
+          
+          if (studio && treatment && date && time) {
+            alert(`Ihr Termin für ${treatment} bei ${studio} am ${date} um ${time} Uhr wurde erfolgreich gebucht.`);
+            bookingModal.style.display = 'none';
+            this.reset();
+          }
+        });
+        
+        // Edit Profile Modal
+        const editProfileModal = document.getElementById('editProfileModal');
+        const closeEditProfileModal = document.getElementById('closeEditProfileModal');
+        
+        // Open edit profile modal
+        document.getElementById('edit-profile-btn')?.addEventListener('click', function() {
+          editProfileModal.style.display = 'block';
+        });
+        
+        // Close edit profile modal
+        closeEditProfileModal.addEventListener('click', function() {
+          editProfileModal.style.display = 'none';
+        });
+        
+        // Edit profile form submission
+        document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('edit-name').value;
+          const email = document.getElementById('edit-email').value;
+          const phone = document.getElementById('edit-phone').value;
+          const address = document.getElementById('edit-address').value;
+          const birthdate = document.getElementById('edit-birthdate').value;
+          
+          // Update profile information
+          document.getElementById('profile-name').textContent = name;
+          document.getElementById('profile-email').textContent = email;
+          document.getElementById('profile-phone').textContent = phone;
+          document.getElementById('profile-address').textContent = address;
+          
+          // Format birthdate for display
+          const birthdateObj = new Date(birthdate);
+          const formattedBirthdate = birthdateObj.toLocaleDateString('de-DE');
+          document.getElementById('profile-birthdate').textContent = formattedBirthdate;
+          
+          alert('Ihre Profilinformationen wurden erfolgreich aktualisiert.');
+          editProfileModal.style.display = 'none';
+        });
+        
+        // Review Modal
+        const reviewModal = document.getElementById('reviewModal');
+        const closeReviewModal = document.getElementById('closeReviewModal');
+        
+        // Open review modal
+        document.querySelectorAll('.review-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            reviewModal.style.display = 'block';
+          });
+        });
+        
+        // Close review modal
+        closeReviewModal.addEventListener('click', function() {
+          reviewModal.style.display = 'none';
+        });
+        
+        // Review form submission
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const rating = document.querySelector('input[name="rating"]:checked')?.value;
+          const title = document.getElementById('review-title').value;
+          const text = document.getElementById('review-text').value;
+          
+          if (rating && title && text) {
+            alert('Vielen Dank für Ihre Bewertung!');
+            reviewModal.style.display = 'none';
+            this.reset();
+          } else {
+            alert('Bitte füllen Sie alle Pflichtfelder aus.');
+          }
+        });
+        
+        // Change password form
+        document.getElementById('change-password-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const currentPassword = document.getElementById('current-password').value;
+          const newPassword = document.getElementById('new-password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          
+          if (currentPassword && newPassword && confirmPassword) {
+            if (newPassword !== confirmPassword) {
+              alert('Die neuen Passwörter stimmen nicht überein.');
+              return;
+            }
+            
+            alert('Ihr Passwort wurde erfolgreich geändert.');
+            this.reset();
+          }
+        });
+        
+        // Notification settings form
+        document.getElementById('notification-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Ihre Benachrichtigungseinstellungen wurden gespeichert.');
+        });
+        
+        // General settings form
+        document.getElementById('general-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Ihre allgemeinen Einstellungen wurden gespeichert.');
+        });
+        
+        // Privacy settings form
+        document.getElementById('privacy-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Ihre Datenschutzeinstellungen wurden gespeichert.');
+        });
+        
+        // Delete account button
+        document.getElementById('delete-account-btn')?.addEventListener('click', function() {
+          if (confirm('Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.')) {
+            alert('Ihr Konto wurde gelöscht. Sie werden zur Startseite weitergeleitet.');
+            window.location.href = 'index.html';
+          }
+        });
+        
+        // Reschedule buttons
+        document.querySelectorAll('.reschedule-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const appointmentId = this.dataset.id;
+            bookingModal.style.display = 'block';
+            alert(`Sie ändern den Termin mit der ID ${appointmentId}.`);
+          });
+        });
+        
+        // Cancel buttons
+        document.querySelectorAll('.cancel-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const appointmentId = this.dataset.id;
+            if (confirm(`Sind Sie sicher, dass Sie den Termin mit der ID ${appointmentId} stornieren möchten?`)) {
+              alert('Ihr Termin wurde storniert.');
+              // In a real implementation, this would remove the appointment from the list
+            }
+          });
+        });
+        
+        // Rebook buttons
+        document.querySelectorAll('.rebook-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            bookingModal.style.display = 'block';
+          });
+        });
+        
+        // Remove favorite buttons
+        document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const favoriteId = this.dataset.id;
+            if (confirm('Sind Sie sicher, dass Sie dieses Studio aus Ihren Favoriten entfernen möchten?')) {
+              // In a real implementation, this would remove the favorite from the list
+              this.closest('.favorite-card').style.display = 'none';
+            }
+          });
+        });
+        
+        // Remove favorite treatment buttons
+        document.querySelectorAll('.remove-favorite-treatment-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const favoriteId = this.dataset.id;
+            if (confirm('Sind Sie sicher, dass Sie diese Behandlung aus Ihren Favoriten entfernen möchten?')) {
+              // In a real implementation, this would remove the favorite from the list
+              this.closest('tr').style.display = 'none';
+            }
+          });
+        });
+        
+        // View details buttons
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const treatmentId = this.dataset.id;
+            alert(`Details für Behandlung mit ID ${treatmentId} werden angezeigt.`);
+          });
+        });
+        
+        // Initialize charts
+        const treatmentHistoryChart = new Chart(
+          document.getElementById('treatmentHistoryChart'),
+          {
+            type: 'line',
+            data: {
+              labels: ['Nov', 'Dez', 'Jan', 'Feb', 'Mär'],
+              datasets: [
+                {
+                  label: 'Behandlungen',
+                  data: [1, 1, 1, 1, 1],
+                  borderColor: '#d4af37',
+                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                  tension: 0.3
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1
+                  }
+                }
+              }
+            }
+          }
+        );
+        
+        // Initialize full history chart if it exists
+        const treatmentHistoryChartFull = document.getElementById('treatmentHistoryChartFull');
+        if (treatmentHistoryChartFull) {
+          new Chart(
+            treatmentHistoryChartFull,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez', 'Jan', 'Feb', 'Mär'],
+                datasets: [
+                  {
+                    label: 'Lippen-Volumen',
+                    data: [0, 0, 0, 0, 1, 0, 1, 0, 1],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  },
+                  {
+                    label: 'Kontur-Behandlung',
+                    data: [0, 0, 0, 0, 0, 1, 0, 1, 0],
+                    borderColor: '#888',
+                    backgroundColor: 'rgba(136, 136, 136, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      stepSize: 1
+                    }
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+          if (e.target === bookingModal) {
+            bookingModal.style.display = 'none';
+          }
+          if (e.target === editProfileModal) {
+            editProfileModal.style.display = 'none';
+          }
+          if (e.target === reviewModal) {
+            reviewModal.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

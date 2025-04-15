@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="YAVU IRI Filler-System - Studiodashboard für nadelfreie Hyaluron-Behandlungen"
+    />
+    <title>YAVU - Studiodashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <!-- Font Awesome für Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Chart.js für Diagramme -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">YAVU</div>
+          <div class="sidebar-subtitle">Studiodashboard</div>
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">S</div>
+          <div class="user-info">
+            <h3>Beauty Lounge Köln</h3>
+            <p>studio@example.com</p>
+          </div>
+        </div>
+        <div class="sidebar-nav">
+          <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+          <a href="#" id="nav-appointments"><i class="fas fa-calendar-alt"></i> Terminkalender</a>
+          <a href="#" id="nav-customers"><i class="fas fa-users"></i> Kunden</a>
+          <a href="#" id="nav-treatments"><i class="fas fa-spa"></i> Behandlungen</a>
+          <a href="#" id="nav-training"><i class="fas fa-graduation-cap"></i> Schulungen</a>
+          <a href="#" id="nav-profile"><i class="fas fa-store"></i> Studioprofil</a>
+          <a href="#" id="nav-settings"><i class="fas fa-cog"></i> Einstellungen</a>
+          <a href="index.html"><i class="fas fa-sign-out-alt"></i> Abmelden</a>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Dashboard Overview -->
+        <div id="dashboard-section" class="dashboard-content active">
+          <div class="dashboard-header">
+            <h2>Willkommen zurück, Beauty Lounge Köln!</h2>
+            <p>Hier finden Sie eine Übersicht Ihrer Aktivitäten und Termine.</p>
+          </div>
+
+          <div class="dashboard-overview">
+            <div class="overview-card">
+              <h3>8</h3>
+              <p>Heutige Termine</p>
+            </div>
+            <div class="overview-card">
+              <h3>24</h3>
+              <p>Termine diese Woche</p>
+            </div>
+            <div class="overview-card">
+              <h3>€1.850</h3>
+              <p>Umsatz diese Woche</p>
+            </div>
+            <div class="overview-card">
+              <h3>4.9</h3>
+              <p>Durchschnittliche Bewertung</p>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Heutige Termine</h3>
+              <a href="#" id="view-all-appointments" class="action-btn">Alle anzeigen</a>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Uhrzeit</th>
+                  <th>Kunde</th>
+                  <th>Behandlung</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>09:30</td>
+                  <td>Laura M.</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="1"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>11:00</td>
+                  <td>Sandra K.</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="2"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>14:30</td>
+                  <td>Claudia B.</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-pending">Ausstehend</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="3"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Umsatzübersicht</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="revenueChart"></canvas>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Neueste Bewertungen</h3>
+              <a href="#" id="view-all-reviews" class="action-btn">Alle anzeigen</a>
+            </div>
+            <div class="reviews-list">
+              <div class="review-item">
+                <div class="review-header">
+                  <div class="review-author">Laura M.</div>
+                  <div class="review-date">15.03.2025</div>
+                  <div class="review-rating">★★★★★</div>
+                </div>
+                <div class="review-title">Fantastische Ergebnisse!</div>
+                <div class="review-text">
+                  "Ich hatte große Angst vor Nadeln und habe mich deshalb nie
+                  getraut, etwas an meinen Lippen machen zu lassen. Mit dem IRI
+                  Filler-System war es absolut schmerzfrei und die Ergebnisse sind
+                  fantastisch!"
+                </div>
+                <div class="review-actions">
+                  <button class="action-btn reply-btn" data-id="1">Antworten</button>
+                </div>
+              </div>
+              <div class="review-item">
+                <div class="review-header">
+                  <div class="review-author">Sandra K.</div>
+                  <div class="review-date">02.03.2025</div>
+                  <div class="review-rating">★★★★☆</div>
+                </div>
+                <div class="review-title">Sehr zufrieden</div>
+                <div class="review-text">
+                  "Nach mehreren schmerzhaften Erfahrungen mit herkömmlichen
+                  Fillern bin ich so froh, IRI gefunden zu haben. Keine Schmerzen,
+                  keine Blutergüsse und ein wunderschönes, natürliches Ergebnis!"
+                </div>
+                <div class="review-actions">
+                  <button class="action-btn reply-btn" data-id="2">Antworten</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appointments Section -->
+        <div id="appointments-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Terminkalender</h2>
+            <p>Verwalten Sie Ihre Termine und Verfügbarkeiten.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="new-appointment-btn">Neuen Termin erstellen</button>
+            <button class="btn btn-secondary" id="manage-availability-btn">Verfügbarkeiten verwalten</button>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Kalenderansicht</h3>
+              <div class="calendar-controls">
+                <button class="action-btn" id="prev-week"><i class="fas fa-chevron-left"></i></button>
+                <span id="current-week">15. - 21. April 2025</span>
+                <button class="action-btn" id="next-week"><i class="fas fa-chevron-right"></i></button>
+                <select id="calendar-view">
+                  <option value="week" selected>Wochenansicht</option>
+                  <option value="day">Tagesansicht</option>
+                  <option value="month">Monatsansicht</option>
+                </select>
+              </div>
+            </div>
+            <div class="calendar-container">
+              <div class="calendar-header">
+                <div class="calendar-time-column">Zeit</div>
+                <div class="calendar-day">Montag<br>15.04.</div>
+                <div class="calendar-day">Dienstag<br>16.04.</div>
+                <div class="calendar-day">Mittwoch<br>17.04.</div>
+                <div class="calendar-day">Donnerstag<br>18.04.</div>
+                <div class="calendar-day">Freitag<br>19.04.</div>
+                <div class="calendar-day weekend">Samstag<br>20.04.</div>
+                <div class="calendar-day weekend">Sonntag<br>21.04.</div>
+              </div>
+              <div class="calendar-body">
+                <!-- Zeilen für jede Stunde -->
+                <div class="calendar-row">
+                  <div class="calendar-time">09:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">10:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">11:00</div>
+                  <div class="calendar-cell">
+                    <div class="calendar-event confirmed">
+                      <div class="event-time">11:00 - 11:45</div>
+                      <div class="event-title">Sandra K.</div>
+                      <div class="event-details">IRI Kontur-Behandlung</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">12:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">13:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">14:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">15:00</div>
+                  <div class="calendar-cell">
+                    <div class="calendar-event pending">
+                      <div class="event-time">14:30 - 15:15</div>
+                      <div class="event-title">Claudia B.</div>
+                      <div class="event-details">IRI Lippen-Volumen</div>
+                    </div>
+                  </div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">16:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+                <div class="calendar-row">
+                  <div class="calendar-time">17:00</div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell"></div>
+                  <div class="calendar-cell weekend"></div>
+                  <div class="calendar-cell weekend"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Kommende Termine</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>Uhrzeit</th>
+                  <th>Kunde</th>
+                  <th>Behandlung</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>15.04.2025</td>
+                  <td>09:30</td>
+                  <td>Laura M.</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="1"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>15.04.2025</td>
+                  <td>11:00</td>
+                  <td>Sandra K.</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="2"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>15.04.2025</td>
+                  <td>14:30</td>
+                  <td>Claudia B.</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-pending">Ausstehend</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="3"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>16.04.2025</td>
+                  <td>10:00</td>
+                  <td>Julia M.</td>
+                  <td>IRI Lippen-Volumen</td>
+                  <td><span class="status-badge status-confirmed">Bestätigt</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="4"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>16.04.2025</td>
+                  <td>15:30</td>
+                  <td>Melanie S.</td>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td><span class="status-badge status-pending">Ausstehend</span></td>
+                  <td>
+                    <button class="action-btn view-details-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn cancel-btn" data-id="5"><i class="fas fa-times"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Customers Section -->
+        <div id="customers-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Kundenverwaltung</h2>
+            <p>Verwalten Sie Ihre Kunden und deren Behandlungshistorie.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="new-customer-btn">Neuen Kunden anlegen</button>
+            <div class="search-container">
+              <input type="text" id="customer-search" placeholder="Kunden suchen..." />
+              <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Kundenliste</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>E-Mail</th>
+                  <th>Telefon</th>
+                  <th>Letzte Behandlung</th>
+                  <th>Anzahl Behandlungen</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Laura M.</td>
+                  <td>laura.m@example.com</td>
+                  <td>+49 123 4567890</td>
+                  <td>10.03.2025</td>
+                  <td>5</td>
+                  <td>
+                    <button class="action-btn view-customer-btn" data-id="1"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-customer-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn book-appointment-btn" data-id="1"><i class="fas fa-calendar-plus"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sandra K.</td>
+                  <td>sandra.k@example.com</td>
+                  <td>+49 123 4567891</td>
+                  <td>15.02.2025</td>
+                  <td>3</td>
+                  <td>
+                    <button class="action-btn view-customer-btn" data-id="2"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-customer-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn book-appointment-btn" data-id="2"><i class="fas fa-calendar-plus"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Claudia B.</td>
+                  <td>claudia.b@example.com</td>
+                  <td>+49 123 4567892</td>
+                  <td>05.01.2025</td>
+                  <td>2</td>
+                  <td>
+                    <button class="action-btn view-customer-btn" data-id="3"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-customer-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn book-appointment-btn" data-id="3"><i class="fas fa-calendar-plus"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Julia M.</td>
+                  <td>julia.m@example.com</td>
+                  <td>+49 123 4567893</td>
+                  <td>20.12.2024</td>
+                  <td>1</td>
+                  <td>
+                    <button class="action-btn view-customer-btn" data-id="4"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-customer-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn book-appointment-btn" data-id="4"><i class="fas fa-calendar-plus"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Melanie S.</td>
+                  <td>melanie.s@example.com</td>
+                  <td>+49 123 4567894</td>
+                  <td>10.11.2024</td>
+                  <td>4</td>
+                  <td>
+                    <button class="action-btn view-customer-btn" data-id="5"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn edit-customer-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn book-appointment-btn" data-id="5"><i class="fas fa-calendar-plus"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Kundenstatistiken</h3>
+            </div>
+            <div class="stats-grid">
+              <div class="stats-card">
+                <h4>Neue Kunden</h4>
+                <div class="stats-chart-container">
+                  <canvas id="newCustomersChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Kundentreue</h4>
+                <div class="stats-chart-container">
+                  <canvas id="customerLoyaltyChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Beliebteste Behandlungen</h4>
+                <div class="stats-chart-container">
+                  <canvas id="popularTreatmentsChart"></canvas>
+                </div>
+              </div>
+              <div class="stats-card">
+                <h4>Umsatz pro Kunde</h4>
+                <div class="stats-chart-container">
+                  <canvas id="revenuePerCustomerChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Treatments Section -->
+        <div id="treatments-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Behandlungsverwaltung</h2>
+            <p>Verwalten Sie Ihre Behandlungsangebote und Preise.</p>
+          </div>
+
+          <div class="dashboard-actions">
+            <button class="btn btn-primary" id="new-treatment-btn">Neue Behandlung anlegen</button>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Behandlungsangebote</h3>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Behandlung</th>
+                  <th>Beschreibung</th>
+                  <th>Dauer</th>
+                  <th>Preis</th>
+                  <th>Status</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>IRI Lippen-Volumen</td>
+                  <td>Volumenaufbau der Lippen mit dem nadelfreien IRI Filler-System</td>
+                  <td>45 Min.</td>
+                  <td>€199</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn edit-treatment-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-treatment-btn" data-id="1"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Kontur-Behandlung</td>
+                  <td>Präzise Konturierung der Lippen mit dem IRI Filler-System</td>
+                  <td>30 Min.</td>
+                  <td>€149</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn edit-treatment-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-treatment-btn" data-id="2"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Kombi-Behandlung</td>
+                  <td>Kombination aus Volumen und Konturierung für optimale Ergebnisse</td>
+                  <td>60 Min.</td>
+                  <td>€299</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn edit-treatment-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-treatment-btn" data-id="3"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Auffrischung</td>
+                  <td>Auffrischungsbehandlung für bestehende Kunden</td>
+                  <td>30 Min.</td>
+                  <td>€129</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn edit-treatment-btn" data-id="4"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-treatment-btn" data-id="4"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>IRI Beratung</td>
+                  <td>Ausführliche Beratung zu IRI Behandlungen (kostenlos bei Buchung)</td>
+                  <td>30 Min.</td>
+                  <td>€0</td>
+                  <td><span class="status-badge status-confirmed">Aktiv</span></td>
+                  <td>
+                    <button class="action-btn edit-treatment-btn" data-id="5"><i class="fas fa-edit"></i></button>
+                    <button class="action-btn deactivate-treatment-btn" data-id="5"><i class="fas fa-toggle-on"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Behandlungsstatistiken</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="treatmentPopularityChart"></canvas>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Materialbestand</h3>
+              <button class="btn btn-secondary" id="order-materials-btn">Material bestellen</button>
+            </div>
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Material</th>
+                  <th>Aktueller Bestand</th>
+                  <th>Mindestbestand</th>
+                  <th>Status</th>
+                  <th>Letzte Bestellung</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>IRI Hyaluron-Filler 1ml</td>
+                  <td>15 Stück</td>
+                  <td>10 Stück</td>
+                  <td><span class="status-badge status-confirmed">Ausreichend</span></td>
+                  <td>01.03.2025</td>
+                </tr>
+                <tr>
+                  <td>IRI Hyaluron-Filler 2ml</td>
+                  <td>8 Stück</td>
+                  <td>5 Stück</td>
+                  <td><span class="status-badge status-confirmed">Ausreichend</span></td>
+                  <td>01.03.2025</td>
+                </tr>
+                <tr>
+                  <td>IRI Reinigungslösung</td>
+                  <td>3 Flaschen</td>
+                  <td>5 Flaschen</td>
+                  <td><span class="status-badge status-pending">Nachbestellen</span></td>
+                  <td>15.01.2025</td>
+                </tr>
+                <tr>
+                  <td>IRI Desinfektionsmittel</td>
+                  <td>7 Flaschen</td>
+                  <td>5 Flaschen</td>
+                  <td><span class="status-badge status-confirmed">Ausreichend</span></td>
+                  <td>15.01.2025</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Training Section -->
+        <div id="training-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Schulungen</h2>
+            <p>Verwalten Sie Ihre Schulungen und Zertifizierungen.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Ihre Zertifizierungen</h3>
+            </div>
+            <div class="certifications-grid">
+              <div class="certification-card">
+                <div class="certification-header">
+                  <div class="certification-logo">
+                    <img src="images/LogoT.png" alt="YAVU Logo" />
+                  </div>
+                  <div class="certification-status confirmed">Aktiv</div>
+                </div>
+                <h4>IRI Filler-System Grundzertifizierung</h4>
+                <p>Zertifiziert seit: 15.01.2024</p>
+                <p>Gültig bis: 15.01.2026</p>
+                <div class="certification-actions">
+                  <button class="btn btn-secondary" id="view-certificate-btn">Zertifikat anzeigen</button>
+                </div>
+              </div>
+              <div class="certification-card">
+                <div class="certification-header">
+                  <div class="certification-logo">
+                    <img src="images/LogoT.png" alt="YAVU Logo" />
+                  </div>
+                  <div class="certification-status confirmed">Aktiv</div>
+                </div>
+                <h4>IRI Advanced Techniques</h4>
+                <p>Zertifiziert seit: 20.03.2024</p>
+                <p>Gültig bis: 20.03.2026</p>
+                <div class="certification-actions">
+                  <button class="btn btn-secondary" id="view-certificate-advanced-btn">Zertifikat anzeigen</button>
+                </div>
+              </div>
+              <div class="certification-card">
+                <div class="certification-header">
+                  <div class="certification-logo">
+                    <img src="images/LogoT.png" alt="YAVU Logo" />
+                  </div>
+                  <div class="certification-status pending">Ausstehend</div>
+                </div>
+                <h4>IRI Master Class</h4>
+                <p>Angemeldet für: 10.05.2025</p>
+                <p>Status: Anmeldung bestätigt</p>
+                <div class="certification-actions">
+                  <button class="btn btn-secondary" id="view-registration-btn">Anmeldung anzeigen</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Verfügbare Schulungen</h3>
+            </div>
+            <div class="training-grid">
+              <div class="training-card">
+                <div class="training-image">
+                  <img src="images/Training1.png" alt="IRI Grundschulung" />
+                </div>
+                <div class="training-content">
+                  <h4>IRI Filler-System Grundschulung</h4>
+                  <p>Die Grundschulung vermittelt alle notwendigen Kenntnisse zur sicheren und effektiven Anwendung des IRI Filler-Systems.</p>
+                  <ul class="training-details">
+                    <li><i class="fas fa-clock"></i> Dauer: 1 Tag (8 Stunden)</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ort: Online oder vor Ort</li>
+                    <li><i class="fas fa-euro-sign"></i> Preis: €499</li>
+                  </ul>
+                  <div class="training-dates">
+                    <h5>Nächste Termine:</h5>
+                    <ul>
+                      <li>05.05.2025 - Online</li>
+                      <li>15.05.2025 - Köln</li>
+                      <li>25.05.2025 - München</li>
+                    </ul>
+                  </div>
+                  <button class="btn btn-primary" id="book-basic-training-btn">Jetzt anmelden</button>
+                </div>
+              </div>
+              <div class="training-card">
+                <div class="training-image">
+                  <img src="images/Training2.png" alt="IRI Advanced Techniques" />
+                </div>
+                <div class="training-content">
+                  <h4>IRI Advanced Techniques</h4>
+                  <p>Erweitern Sie Ihre Fähigkeiten mit fortgeschrittenen Techniken für das IRI Filler-System.</p>
+                  <ul class="training-details">
+                    <li><i class="fas fa-clock"></i> Dauer: 1 Tag (8 Stunden)</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ort: Vor Ort</li>
+                    <li><i class="fas fa-euro-sign"></i> Preis: €699</li>
+                  </ul>
+                  <div class="training-dates">
+                    <h5>Nächste Termine:</h5>
+                    <ul>
+                      <li>10.06.2025 - Köln</li>
+                      <li>20.06.2025 - München</li>
+                      <li>30.06.2025 - Hamburg</li>
+                    </ul>
+                  </div>
+                  <button class="btn btn-primary" id="book-advanced-training-btn">Jetzt anmelden</button>
+                </div>
+              </div>
+              <div class="training-card">
+                <div class="training-image">
+                  <img src="images/Training3.png" alt="IRI Master Class" />
+                </div>
+                <div class="training-content">
+                  <h4>IRI Master Class</h4>
+                  <p>Die exklusive Master Class für erfahrene Anwender des IRI Filler-Systems.</p>
+                  <ul class="training-details">
+                    <li><i class="fas fa-clock"></i> Dauer: 2 Tage (16 Stunden)</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Ort: Vor Ort</li>
+                    <li><i class="fas fa-euro-sign"></i> Preis: €999</li>
+                  </ul>
+                  <div class="training-dates">
+                    <h5>Nächste Termine:</h5>
+                    <ul>
+                      <li>10.05.2025 - Köln</li>
+                      <li>15.07.2025 - München</li>
+                      <li>20.09.2025 - Hamburg</li>
+                    </ul>
+                  </div>
+                  <button class="btn btn-primary" id="book-master-training-btn">Jetzt anmelden</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Schulungsmaterialien</h3>
+            </div>
+            <div class="materials-grid">
+              <div class="material-card">
+                <div class="material-icon"><i class="fas fa-file-pdf"></i></div>
+                <h4>IRI Anwendungshandbuch</h4>
+                <p>Umfassendes Handbuch zur Anwendung des IRI Filler-Systems</p>
+                <button class="btn btn-secondary" id="download-manual-btn">Herunterladen</button>
+              </div>
+              <div class="material-card">
+                <div class="material-icon"><i class="fas fa-video"></i></div>
+                <h4>Schulungsvideos</h4>
+                <p>Video-Tutorials zu verschiedenen Anwendungstechniken</p>
+                <button class="btn btn-secondary" id="view-videos-btn">Ansehen</button>
+              </div>
+              <div class="material-card">
+                <div class="material-icon"><i class="fas fa-file-alt"></i></div>
+                <h4>Fallstudien</h4>
+                <p>Dokumentierte Fallbeispiele mit Vorher-Nachher-Vergleichen</p>
+                <button class="btn btn-secondary" id="view-cases-btn">Ansehen</button>
+              </div>
+              <div class="material-card">
+                <div class="material-icon"><i class="fas fa-question-circle"></i></div>
+                <h4>FAQ für Anwender</h4>
+                <p>Häufig gestellte Fragen und Antworten für Behandler</p>
+                <button class="btn btn-secondary" id="view-faq-btn">Ansehen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Studioprofil</h2>
+            <p>Verwalten Sie die Informationen und Einstellungen Ihres Studios.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Studioinformationen</h3>
+              <button class="btn btn-primary" id="edit-studio-btn">Bearbeiten</button>
+            </div>
+            <div class="profile-info">
+              <div class="profile-avatar">
+                <img src="images/Studio1.png" alt="Studio Logo" class="studio-logo" />
+                <button class="change-avatar-btn"><i class="fas fa-camera"></i></button>
+              </div>
+              <div class="profile-details">
+                <div class="profile-field">
+                  <label>Studioname:</label>
+                  <span id="studio-name">Beauty Lounge Köln</span>
+                </div>
+                <div class="profile-field">
+                  <label>Adresse:</label>
+                  <span id="studio-address">Ehrenstraße 45, 50667 Köln</span>
+                </div>
+                <div class="profile-field">
+                  <label>Telefon:</label>
+                  <span id="studio-phone">+49 221 1234567</span>
+                </div>
+                <div class="profile-field">
+                  <label>E-Mail:</label>
+                  <span id="studio-email">info@beauty-lounge-koeln.de</span>
+                </div>
+                <div class="profile-field">
+                  <label>Website:</label>
+                  <span id="studio-website">www.beauty-lounge-koeln.de</span>
+                </div>
+                <div class="profile-field">
+                  <label>Öffnungszeiten:</label>
+                  <span id="studio-hours">Mo-Fr: 9:00-18:00, Sa: 10:00-16:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Studiobeschreibung</h3>
+              <button class="btn btn-primary" id="edit-description-btn">Bearbeiten</button>
+            </div>
+            <div class="studio-description">
+              <p>Die Beauty Lounge Köln ist ein luxuriöses Kosmetikstudio im Herzen von Köln. Wir bieten unseren Kunden hochwertige Behandlungen in einer entspannten und eleganten Atmosphäre. Unser Team besteht aus erfahrenen und zertifizierten Kosmetikerinnen, die sich regelmäßig weiterbilden, um Ihnen die neuesten und besten Behandlungsmethoden anbieten zu können.</p>
+              <p>Als zertifizierter Anwender des IRI Filler-Systems bieten wir Ihnen nadelfreie Hyaluron-Behandlungen mit sofort sichtbaren Ergebnissen und minimalen Nebenwirkungen. Überzeugen Sie sich selbst von der revolutionären Technologie und vereinbaren Sie einen Termin bei uns!</p>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Studiobilder</h3>
+              <button class="btn btn-primary" id="add-images-btn">Bilder hinzufügen</button>
+            </div>
+            <div class="studio-images">
+              <div class="studio-image-item">
+                <img src="images/Studio1.png" alt="Studio Innenansicht" />
+                <div class="image-actions">
+                  <button class="action-btn delete-image-btn" data-id="1"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+              <div class="studio-image-item">
+                <img src="images/Studio2.png" alt="Behandlungsraum" />
+                <div class="image-actions">
+                  <button class="action-btn delete-image-btn" data-id="2"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+              <div class="studio-image-item">
+                <img src="images/Studio3.png" alt="Empfangsbereich" />
+                <div class="image-actions">
+                  <button class="action-btn delete-image-btn" data-id="3"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+              <div class="studio-image-item">
+                <img src="images/Studio4.png" alt="Außenansicht" />
+                <div class="image-actions">
+                  <button class="action-btn delete-image-btn" data-id="4"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Team</h3>
+              <button class="btn btn-primary" id="add-team-member-btn">Teammitglied hinzufügen</button>
+            </div>
+            <div class="team-grid">
+              <div class="team-member-card">
+                <div class="team-member-avatar">
+                  <img src="images/Team1.png" alt="Sarah M." />
+                </div>
+                <h4>Sarah M.</h4>
+                <p class="team-member-position">Studioleitung</p>
+                <p class="team-member-description">Zertifizierte IRI-Anwenderin mit über 10 Jahren Erfahrung in der Kosmetikbranche.</p>
+                <div class="team-member-actions">
+                  <button class="action-btn edit-team-member-btn" data-id="1"><i class="fas fa-edit"></i></button>
+                  <button class="action-btn delete-team-member-btn" data-id="1"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+              <div class="team-member-card">
+                <div class="team-member-avatar">
+                  <img src="images/Team2.png" alt="Lisa K." />
+                </div>
+                <h4>Lisa K.</h4>
+                <p class="team-member-position">Senior Kosmetikerin</p>
+                <p class="team-member-description">Spezialisiert auf IRI-Behandlungen und Hautpflege.</p>
+                <div class="team-member-actions">
+                  <button class="action-btn edit-team-member-btn" data-id="2"><i class="fas fa-edit"></i></button>
+                  <button class="action-btn delete-team-member-btn" data-id="2"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+              <div class="team-member-card">
+                <div class="team-member-avatar">
+                  <img src="images/Team3.png" alt="Nina S." />
+                </div>
+                <h4>Nina S.</h4>
+                <p class="team-member-position">Kosmetikerin</p>
+                <p class="team-member-description">Zertifizierte IRI-Anwenderin mit Schwerpunkt auf Lippenbehandlungen.</p>
+                <div class="team-member-actions">
+                  <button class="action-btn edit-team-member-btn" data-id="3"><i class="fas fa-edit"></i></button>
+                  <button class="action-btn delete-team-member-btn" data-id="3"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Section -->
+        <div id="settings-section" class="dashboard-content">
+          <div class="dashboard-header">
+            <h2>Einstellungen</h2>
+            <p>Verwalten Sie die Einstellungen Ihres Studios.</p>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Allgemeine Einstellungen</h3>
+            </div>
+            <form id="general-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="language">Sprache</label>
+                <select id="language" name="language">
+                  <option value="de" selected>Deutsch</option>
+                  <option value="en">Englisch</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="timezone">Zeitzone</label>
+                <select id="timezone" name="timezone">
+                  <option value="Europe/Berlin" selected>Berlin (GMT+1)</option>
+                  <option value="Europe/London">London (GMT)</option>
+                  <option value="America/New_York">New York (GMT-5)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="date-format">Datumsformat</label>
+                <select id="date-format" name="date-format">
+                  <option value="dd.mm.yyyy" selected>DD.MM.YYYY</option>
+                  <option value="mm/dd/yyyy">MM/DD/YYYY</option>
+                  <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="time-format">Zeitformat</label>
+                <select id="time-format" name="time-format">
+                  <option value="24h" selected>24 Stunden</option>
+                  <option value="12h">12 Stunden (AM/PM)</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Termineinstellungen</h3>
+            </div>
+            <form id="appointment-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="appointment-duration">Standard-Terminlänge</label>
+                <select id="appointment-duration" name="appointment-duration">
+                  <option value="15">15 Minuten</option>
+                  <option value="30" selected>30 Minuten</option>
+                  <option value="45">45 Minuten</option>
+                  <option value="60">60 Minuten</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="buffer-time">Pufferzeit zwischen Terminen</label>
+                <select id="buffer-time" name="buffer-time">
+                  <option value="0">Keine</option>
+                  <option value="5">5 Minuten</option>
+                  <option value="10" selected>10 Minuten</option>
+                  <option value="15">15 Minuten</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="advance-booking">Maximale Vorlaufzeit für Buchungen</label>
+                <select id="advance-booking" name="advance-booking">
+                  <option value="1">1 Woche</option>
+                  <option value="2">2 Wochen</option>
+                  <option value="4" selected>4 Wochen</option>
+                  <option value="8">8 Wochen</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="cancellation-policy">Stornierungsfrist</label>
+                <select id="cancellation-policy" name="cancellation-policy">
+                  <option value="12">12 Stunden</option>
+                  <option value="24" selected>24 Stunden</option>
+                  <option value="48">48 Stunden</option>
+                </select>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="auto-confirm" name="auto-confirm" checked />
+                <label for="auto-confirm">Termine automatisch bestätigen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="reminder-emails" name="reminder-emails" checked />
+                <label for="reminder-emails">Erinnerungs-E-Mails senden</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="reminder-sms" name="reminder-sms" checked />
+                <label for="reminder-sms">Erinnerungs-SMS senden</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Zahlungseinstellungen</h3>
+            </div>
+            <form id="payment-settings-form" class="settings-form">
+              <div class="form-group">
+                <label for="currency">Währung</label>
+                <select id="currency" name="currency">
+                  <option value="EUR" selected>Euro (€)</option>
+                  <option value="USD">US-Dollar ($)</option>
+                  <option value="GBP">Britisches Pfund (£)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tax-rate">Mehrwertsteuersatz</label>
+                <select id="tax-rate" name="tax-rate">
+                  <option value="0">0%</option>
+                  <option value="7">7%</option>
+                  <option value="19" selected>19%</option>
+                </select>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="payment-cash" name="payment-cash" checked />
+                <label for="payment-cash">Barzahlung akzeptieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="payment-card" name="payment-card" checked />
+                <label for="payment-card">Kartenzahlung akzeptieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="payment-online" name="payment-online" />
+                <label for="payment-online">Online-Zahlung akzeptieren</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="deposit-required" name="deposit-required" />
+                <label for="deposit-required">Anzahlung bei Buchung verlangen</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+
+          <div class="dashboard-section">
+            <div class="dashboard-section-header">
+              <h3>Benachrichtigungseinstellungen</h3>
+            </div>
+            <form id="notification-settings-form" class="settings-form">
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-new-appointment" name="notify-new-appointment" checked />
+                <label for="notify-new-appointment">Benachrichtigung bei neuen Terminen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-cancelled-appointment" name="notify-cancelled-appointment" checked />
+                <label for="notify-cancelled-appointment">Benachrichtigung bei stornierten Terminen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-new-review" name="notify-new-review" checked />
+                <label for="notify-new-review">Benachrichtigung bei neuen Bewertungen</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-low-stock" name="notify-low-stock" checked />
+                <label for="notify-low-stock">Benachrichtigung bei niedrigem Materialbestand</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-daily-summary" name="notify-daily-summary" checked />
+                <label for="notify-daily-summary">Tägliche Zusammenfassung</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="notify-weekly-summary" name="notify-weekly-summary" checked />
+                <label for="notify-weekly-summary">Wöchentliche Zusammenfassung</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Einstellungen speichern</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointment Modal -->
+    <div class="modal" id="appointmentModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeAppointmentModal">&times;</span>
+        <h2 class="modal-title">Termin erstellen</h2>
+        <form id="appointmentForm">
+          <div class="form-group">
+            <label for="appointment-customer">Kunde</label>
+            <select id="appointment-customer" name="appointment-customer" required>
+              <option value="">Kunde auswählen</option>
+              <option value="1">Laura M.</option>
+              <option value="2">Sandra K.</option>
+              <option value="3">Claudia B.</option>
+              <option value="4">Julia M.</option>
+              <option value="5">Melanie S.</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="appointment-treatment">Behandlung</label>
+            <select id="appointment-treatment" name="appointment-treatment" required>
+              <option value="">Behandlung auswählen</option>
+              <option value="1">IRI Lippen-Volumen</option>
+              <option value="2">IRI Kontur-Behandlung</option>
+              <option value="3">IRI Kombi-Behandlung</option>
+              <option value="4">IRI Auffrischung</option>
+              <option value="5">IRI Beratung</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="appointment-date">Datum</label>
+            <input type="date" id="appointment-date" name="appointment-date" required />
+          </div>
+          <div class="form-group">
+            <label for="appointment-time">Uhrzeit</label>
+            <select id="appointment-time" name="appointment-time" required>
+              <option value="">Uhrzeit auswählen</option>
+              <option value="09:00">09:00</option>
+              <option value="09:30">09:30</option>
+              <option value="10:00">10:00</option>
+              <option value="10:30">10:30</option>
+              <option value="11:00">11:00</option>
+              <option value="11:30">11:30</option>
+              <option value="12:00">12:00</option>
+              <option value="12:30">12:30</option>
+              <option value="13:00">13:00</option>
+              <option value="13:30">13:30</option>
+              <option value="14:00">14:00</option>
+              <option value="14:30">14:30</option>
+              <option value="15:00">15:00</option>
+              <option value="15:30">15:30</option>
+              <option value="16:00">16:00</option>
+              <option value="16:30">16:30</option>
+              <option value="17:00">17:00</option>
+              <option value="17:30">17:30</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="appointment-notes">Anmerkungen</label>
+            <textarea id="appointment-notes" name="appointment-notes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Termin speichern</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Studio Modal -->
+    <div class="modal" id="editStudioModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeEditStudioModal">&times;</span>
+        <h2 class="modal-title">Studioinformationen bearbeiten</h2>
+        <form id="editStudioForm">
+          <div class="form-group">
+            <label for="edit-studio-name">Studioname</label>
+            <input type="text" id="edit-studio-name" name="edit-studio-name" value="Beauty Lounge Köln" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-studio-address">Adresse</label>
+            <input type="text" id="edit-studio-address" name="edit-studio-address" value="Ehrenstraße 45, 50667 Köln" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-studio-phone">Telefon</label>
+            <input type="tel" id="edit-studio-phone" name="edit-studio-phone" value="+49 221 1234567" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-studio-email">E-Mail</label>
+            <input type="email" id="edit-studio-email" name="edit-studio-email" value="info@beauty-lounge-koeln.de" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-studio-website">Website</label>
+            <input type="url" id="edit-studio-website" name="edit-studio-website" value="www.beauty-lounge-koeln.de" />
+          </div>
+          <div class="form-group">
+            <label for="edit-studio-hours">Öffnungszeiten</label>
+            <input type="text" id="edit-studio-hours" name="edit-studio-hours" value="Mo-Fr: 9:00-18:00, Sa: 10:00-16:00" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Änderungen speichern</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Edit Description Modal -->
+    <div class="modal" id="editDescriptionModal">
+      <div class="modal-content">
+        <span class="close-modal" id="closeEditDescriptionModal">&times;</span>
+        <h2 class="modal-title">Studiobeschreibung bearbeiten</h2>
+        <form id="editDescriptionForm">
+          <div class="form-group">
+            <label for="edit-description">Beschreibung</label>
+            <textarea id="edit-description" name="edit-description" rows="10" required>Die Beauty Lounge Köln ist ein luxuriöses Kosmetikstudio im Herzen von Köln. Wir bieten unseren Kunden hochwertige Behandlungen in einer entspannten und eleganten Atmosphäre. Unser Team besteht aus erfahrenen und zertifizierten Kosmetikerinnen, die sich regelmäßig weiterbilden, um Ihnen die neuesten und besten Behandlungsmethoden anbieten zu können.
+
+Als zertifizierter Anwender des IRI Filler-Systems bieten wir Ihnen nadelfreie Hyaluron-Behandlungen mit sofort sichtbaren Ergebnissen und minimalen Nebenwirkungen. Überzeugen Sie sich selbst von der revolutionären Technologie und vereinbaren Sie einen Termin bei uns!</textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Änderungen speichern</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Navigation
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        const dashboardContents = document.querySelectorAll('.dashboard-content');
+        
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            if (this.getAttribute('href') === 'index.html') return;
+            
+            e.preventDefault();
+            
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Hide all dashboard contents
+            dashboardContents.forEach(content => content.classList.remove('active'));
+            
+            // Show corresponding content
+            const targetId = this.id.replace('nav-', '') + '-section';
+            document.getElementById(targetId)?.classList.add('active');
+          });
+        });
+        
+        // Initialize dashboard as active
+        document.getElementById('dashboard-section').classList.add('active');
+        
+        // View all appointments
+        document.getElementById('view-all-appointments')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Hide all dashboard contents
+          dashboardContents.forEach(content => content.classList.remove('active'));
+          
+          // Show appointments section
+          document.getElementById('appointments-section').classList.add('active');
+          
+          // Update navigation
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.getElementById('nav-appointments').classList.add('active');
+        });
+        
+        // View all reviews
+        document.getElementById('view-all-reviews')?.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Alle Bewertungen werden angezeigt.');
+        });
+        
+        // Appointment Modal
+        const appointmentModal = document.getElementById('appointmentModal');
+        const closeAppointmentModal = document.getElementById('closeAppointmentModal');
+        
+        // Open appointment modal
+        document.getElementById('new-appointment-btn')?.addEventListener('click', function() {
+          appointmentModal.style.display = 'block';
+        });
+        
+        // Close appointment modal
+        closeAppointmentModal.addEventListener('click', function() {
+          appointmentModal.style.display = 'none';
+        });
+        
+        // Appointment form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const customer = document.getElementById('appointment-customer').value;
+          const treatment = document.getElementById('appointment-treatment').value;
+          const date = document.getElementById('appointment-date').value;
+          const time = document.getElementById('appointment-time').value;
+          
+          if (customer && treatment && date && time) {
+            alert(`Termin wurde erfolgreich erstellt.`);
+            appointmentModal.style.display = 'none';
+            this.reset();
+          }
+        });
+        
+        // Edit Studio Modal
+        const editStudioModal = document.getElementById('editStudioModal');
+        const closeEditStudioModal = document.getElementById('closeEditStudioModal');
+        
+        // Open edit studio modal
+        document.getElementById('edit-studio-btn')?.addEventListener('click', function() {
+          editStudioModal.style.display = 'block';
+        });
+        
+        // Close edit studio modal
+        closeEditStudioModal.addEventListener('click', function() {
+          editStudioModal.style.display = 'none';
+        });
+        
+        // Edit studio form submission
+        document.getElementById('editStudioForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('edit-studio-name').value;
+          const address = document.getElementById('edit-studio-address').value;
+          const phone = document.getElementById('edit-studio-phone').value;
+          const email = document.getElementById('edit-studio-email').value;
+          const website = document.getElementById('edit-studio-website').value;
+          const hours = document.getElementById('edit-studio-hours').value;
+          
+          // Update studio information
+          document.getElementById('studio-name').textContent = name;
+          document.getElementById('studio-address').textContent = address;
+          document.getElementById('studio-phone').textContent = phone;
+          document.getElementById('studio-email').textContent = email;
+          document.getElementById('studio-website').textContent = website;
+          document.getElementById('studio-hours').textContent = hours;
+          
+          alert('Studioinformationen wurden erfolgreich aktualisiert.');
+          editStudioModal.style.display = 'none';
+        });
+        
+        // Edit Description Modal
+        const editDescriptionModal = document.getElementById('editDescriptionModal');
+        const closeEditDescriptionModal = document.getElementById('closeEditDescriptionModal');
+        
+        // Open edit description modal
+        document.getElementById('edit-description-btn')?.addEventListener('click', function() {
+          editDescriptionModal.style.display = 'block';
+        });
+        
+        // Close edit description modal
+        closeEditDescriptionModal.addEventListener('click', function() {
+          editDescriptionModal.style.display = 'none';
+        });
+        
+        // Edit description form submission
+        document.getElementById('editDescriptionForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const description = document.getElementById('edit-description').value;
+          
+          // Update studio description
+          document.querySelector('.studio-description').innerHTML = description.replace(/\n/g, '<br>');
+          
+          alert('Studiobeschreibung wurde erfolgreich aktualisiert.');
+          editDescriptionModal.style.display = 'none';
+        });
+        
+        // Calendar controls
+        document.getElementById('prev-week')?.addEventListener('click', function() {
+          alert('Vorherige Woche wird angezeigt.');
+        });
+        
+        document.getElementById('next-week')?.addEventListener('click', function() {
+          alert('Nächste Woche wird angezeigt.');
+        });
+        
+        document.getElementById('calendar-view')?.addEventListener('change', function() {
+          alert(`Kalenderansicht wurde auf ${this.value} geändert.`);
+        });
+        
+        // Manage availability
+        document.getElementById('manage-availability-btn')?.addEventListener('click', function() {
+          alert('Verfügbarkeiten verwalten wird geöffnet.');
+        });
+        
+        // New customer
+        document.getElementById('new-customer-btn')?.addEventListener('click', function() {
+          alert('Neuen Kunden anlegen wird geöffnet.');
+        });
+        
+        // Customer search
+        document.getElementById('customer-search')?.addEventListener('input', function() {
+          // In a real implementation, this would filter the customer list
+          console.log(`Suche nach: ${this.value}`);
+        });
+        
+        // New treatment
+        document.getElementById('new-treatment-btn')?.addEventListener('click', function() {
+          alert('Neue Behandlung anlegen wird geöffnet.');
+        });
+        
+        // Order materials
+        document.getElementById('order-materials-btn')?.addEventListener('click', function() {
+          alert('Material bestellen wird geöffnet.');
+        });
+        
+        // View certificate
+        document.getElementById('view-certificate-btn')?.addEventListener('click', function() {
+          alert('Zertifikat wird angezeigt.');
+        });
+        
+        document.getElementById('view-certificate-advanced-btn')?.addEventListener('click', function() {
+          alert('Advanced-Zertifikat wird angezeigt.');
+        });
+        
+        document.getElementById('view-registration-btn')?.addEventListener('click', function() {
+          alert('Anmeldung wird angezeigt.');
+        });
+        
+        // Book training
+        document.getElementById('book-basic-training-btn')?.addEventListener('click', function() {
+          alert('Anmeldung zur IRI Filler-System Grundschulung wird geöffnet.');
+        });
+        
+        document.getElementById('book-advanced-training-btn')?.addEventListener('click', function() {
+          alert('Anmeldung zu IRI Advanced Techniques wird geöffnet.');
+        });
+        
+        document.getElementById('book-master-training-btn')?.addEventListener('click', function() {
+          alert('Anmeldung zur IRI Master Class wird geöffnet.');
+        });
+        
+        // Download/view materials
+        document.getElementById('download-manual-btn')?.addEventListener('click', function() {
+          alert('IRI Anwendungshandbuch wird heruntergeladen.');
+        });
+        
+        document.getElementById('view-videos-btn')?.addEventListener('click', function() {
+          alert('Schulungsvideos werden angezeigt.');
+        });
+        
+        document.getElementById('view-cases-btn')?.addEventListener('click', function() {
+          alert('Fallstudien werden angezeigt.');
+        });
+        
+        document.getElementById('view-faq-btn')?.addEventListener('click', function() {
+          alert('FAQ für Anwender wird angezeigt.');
+        });
+        
+        // Add images
+        document.getElementById('add-images-btn')?.addEventListener('click', function() {
+          alert('Bilder hinzufügen wird geöffnet.');
+        });
+        
+        // Delete images
+        document.querySelectorAll('.delete-image-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm('Sind Sie sicher, dass Sie dieses Bild löschen möchten?')) {
+              // In a real implementation, this would delete the image
+              this.closest('.studio-image-item').style.display = 'none';
+            }
+          });
+        });
+        
+        // Add team member
+        document.getElementById('add-team-member-btn')?.addEventListener('click', function() {
+          alert('Teammitglied hinzufügen wird geöffnet.');
+        });
+        
+        // Edit team member
+        document.querySelectorAll('.edit-team-member-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Teammitglied mit ID ${this.dataset.id} bearbeiten wird geöffnet.`);
+          });
+        });
+        
+        // Delete team member
+        document.querySelectorAll('.delete-team-member-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm('Sind Sie sicher, dass Sie dieses Teammitglied löschen möchten?')) {
+              // In a real implementation, this would delete the team member
+              this.closest('.team-member-card').style.display = 'none';
+            }
+          });
+        });
+        
+        // Settings forms
+        document.getElementById('general-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Allgemeine Einstellungen wurden gespeichert.');
+        });
+        
+        document.getElementById('appointment-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Termineinstellungen wurden gespeichert.');
+        });
+        
+        document.getElementById('payment-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Zahlungseinstellungen wurden gespeichert.');
+        });
+        
+        document.getElementById('notification-settings-form')?.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Benachrichtigungseinstellungen wurden gespeichert.');
+        });
+        
+        // View details buttons
+        document.querySelectorAll('.view-details-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Details für Termin mit ID ${this.dataset.id} werden angezeigt.`);
+          });
+        });
+        
+        // Edit buttons
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Termin mit ID ${this.dataset.id} bearbeiten wird geöffnet.`);
+          });
+        });
+        
+        // Cancel buttons
+        document.querySelectorAll('.cancel-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm(`Sind Sie sicher, dass Sie den Termin mit der ID ${this.dataset.id} stornieren möchten?`)) {
+              alert('Termin wurde storniert.');
+              // In a real implementation, this would update the appointment status
+            }
+          });
+        });
+        
+        // View customer buttons
+        document.querySelectorAll('.view-customer-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Kundendetails für Kunde mit ID ${this.dataset.id} werden angezeigt.`);
+          });
+        });
+        
+        // Edit customer buttons
+        document.querySelectorAll('.edit-customer-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Kunde mit ID ${this.dataset.id} bearbeiten wird geöffnet.`);
+          });
+        });
+        
+        // Book appointment buttons
+        document.querySelectorAll('.book-appointment-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            appointmentModal.style.display = 'block';
+            document.getElementById('appointment-customer').value = this.dataset.id;
+          });
+        });
+        
+        // Edit treatment buttons
+        document.querySelectorAll('.edit-treatment-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Behandlung mit ID ${this.dataset.id} bearbeiten wird geöffnet.`);
+          });
+        });
+        
+        // Deactivate treatment buttons
+        document.querySelectorAll('.deactivate-treatment-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            if (confirm(`Sind Sie sicher, dass Sie die Behandlung mit der ID ${this.dataset.id} deaktivieren möchten?`)) {
+              // In a real implementation, this would update the treatment status
+              this.innerHTML = '<i class="fas fa-toggle-off"></i>';
+              this.closest('tr').querySelector('.status-badge').textContent = 'Inaktiv';
+              this.closest('tr').querySelector('.status-badge').className = 'status-badge status-cancelled';
+            }
+          });
+        });
+        
+        // Reply buttons
+        document.querySelectorAll('.reply-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            alert(`Antwort auf Bewertung mit ID ${this.dataset.id} wird geöffnet.`);
+          });
+        });
+        
+        // Initialize charts
+        const revenueChart = new Chart(
+          document.getElementById('revenueChart'),
+          {
+            type: 'line',
+            data: {
+              labels: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+              datasets: [
+                {
+                  label: 'Umsatz',
+                  data: [250, 320, 280, 350, 400, 250, 0],
+                  borderColor: '#d4af37',
+                  backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                  tension: 0.3
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    callback: function(value) {
+                      return '€' + value;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        );
+        
+        // Initialize treatment popularity chart if it exists
+        const treatmentPopularityChart = document.getElementById('treatmentPopularityChart');
+        if (treatmentPopularityChart) {
+          new Chart(
+            treatmentPopularityChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['IRI Lippen-Volumen', 'IRI Kontur-Behandlung', 'IRI Kombi-Behandlung', 'IRI Auffrischung', 'IRI Beratung'],
+                datasets: [
+                  {
+                    label: 'Anzahl der Buchungen',
+                    data: [25, 18, 12, 8, 15],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      stepSize: 5
+                    }
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // Initialize customer statistics charts if they exist
+        const newCustomersChart = document.getElementById('newCustomersChart');
+        if (newCustomersChart) {
+          new Chart(
+            newCustomersChart,
+            {
+              type: 'line',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Neue Kunden',
+                    data: [5, 8, 12, 10, 15, 7],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.3
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      stepSize: 5
+                    }
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        const customerLoyaltyChart = document.getElementById('customerLoyaltyChart');
+        if (customerLoyaltyChart) {
+          new Chart(
+            customerLoyaltyChart,
+            {
+              type: 'pie',
+              data: {
+                labels: ['Einmalig', '2-3 Besuche', '4-5 Besuche', '6+ Besuche'],
+                datasets: [
+                  {
+                    data: [30, 40, 20, 10],
+                    backgroundColor: ['#333', '#555', '#888', '#d4af37']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        const popularTreatmentsChart = document.getElementById('popularTreatmentsChart');
+        if (popularTreatmentsChart) {
+          new Chart(
+            popularTreatmentsChart,
+            {
+              type: 'doughnut',
+              data: {
+                labels: ['IRI Lippen-Volumen', 'IRI Kontur-Behandlung', 'IRI Kombi-Behandlung', 'IRI Auffrischung', 'IRI Beratung'],
+                datasets: [
+                  {
+                    data: [40, 25, 15, 10, 10],
+                    backgroundColor: ['#d4af37', '#333', '#555', '#777', '#999']
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
+            }
+          );
+        }
+        
+        const revenuePerCustomerChart = document.getElementById('revenuePerCustomerChart');
+        if (revenuePerCustomerChart) {
+          new Chart(
+            revenuePerCustomerChart,
+            {
+              type: 'bar',
+              data: {
+                labels: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'],
+                datasets: [
+                  {
+                    label: 'Durchschnittlicher Umsatz pro Kunde',
+                    data: [180, 195, 210, 200, 220, 230],
+                    backgroundColor: '#d4af37'
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    ticks: {
+                      callback: function(value) {
+                        return '€' + value;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          );
+        }
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', function(e) {
+          if (e.target === appointmentModal) {
+            appointmentModal.style.display = 'none';
+          }
+          if (e.target === editStudioModal) {
+            editStudioModal.style.display = 'none';
+          }
+          if (e.target === editDescriptionModal) {
+            editDescriptionModal.style.display = 'none';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

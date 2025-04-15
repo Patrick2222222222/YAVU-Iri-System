@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YAVU - Studio Dashboard</title>
+    <link rel="stylesheet" href="css/studio.css" />
+    <!-- Font Awesome für Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo">YAVU</span>
+        <span class="sidebar-subtitle">STUDIO PORTAL</span>
+      </div>
+      <div class="studio-info">
+        <div class="studio-avatar">S</div>
+        <div class="studio-details">
+          <h3>Studio</h3>
+          <p id="studioName">Aesthetic Sense</p>
+        </div>
+      </div>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="#" class="tab-button" data-target="dashboardTab">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="bookingsTab">
+            <i class="fas fa-calendar-alt"></i> Buchungen
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="calendarTab">
+            <i class="fas fa-calendar-day"></i> Kalender
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="availabilityTab">
+            <i class="fas fa-clock"></i> Verfügbarkeit
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="treatmentsTab">
+            <i class="fas fa-spa"></i> Behandlungen
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="offersTab">
+            <i class="fas fa-tags"></i> Angebote
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="reviewsTab">
+            <i class="fas fa-star"></i> Bewertungen
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="messagesTab">
+            <i class="fas fa-envelope"></i> Nachrichten
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="profileTab">
+            <i class="fas fa-user-cog"></i> Profil
+          </a>
+        </li>
+        <li>
+          <a href="#" class="tab-button" data-target="trainingsTab">
+            <i class="fas fa-graduation-cap"></i> Schulungen
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="#" class="logout-btn" id="logoutButton">
+          <i class="fas fa-sign-out-alt"></i> Abmelden
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="top-bar">
+        <h1 class="page-title">Studio Dashboard</h1>
+        <div class="notification-bell" id="notificationBell">2</div>
+        <!-- Notification Dropdown -->
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notification-item">
+            <b>Neue Buchung</b>
+            <p>Marie Schmidt hat einen Termin gebucht</p>
+            <small>03.03.2025, 14:25</small>
+          </div>
+          <div class="notification-item">
+            <b>Neue Nachricht</b>
+            <p>Sie haben eine Nachricht vom Admin erhalten</p>
+            <small>01.03.2025, 09:30</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Tab -->
+      <div id="dashboardTab" class="tab-content">
+        <h2 class="section-title">ÜBERSICHT</h2>
+        <!-- Stats Overview -->
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-label">Aktive Buchungen</div>
+            <div class="stat-value" id="activeBookingsCount">0</div>
+            <div class="stat-trend">Gesamt</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Heutige Termine</div>
+            <div class="stat-value" id="todayBookingsCount">0</div>
+            <div class="stat-trend">Termine</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Neue Anfragen</div>
+            <div class="stat-value" id="pendingBookingsCount">0</div>
+            <div class="stat-trend">Unbestätigt</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Umsatz</div>
+            <div class="stat-value" id="revenueAmount">0,00 €</div>
+            <div class="stat-trend">Diesen Monat</div>
+          </div>
+        </div>
+
+        <!-- Booking Chart -->
+        <div class="chart-container">
+          <h2 class="section-title">BUCHUNGEN DER LETZTEN 7 TAGE</h2>
+          <div id="bookingsChart" class="chart"></div>
+        </div>
+
+        <!-- Latest Bookings -->
+        <h2 class="section-title">AKTUELLE BUCHUNGEN</h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>DATUM</th>
+                <th>UHRZEIT</th>
+                <th>KUNDE</th>
+                <th>BEHANDLUNG</th>
+                <th>STATUS</th>
+                <th>AKTIONEN</th>
+              </tr>
+            </thead>
+            <tbody id="dashboardBookingsTable">
+              <!-- Wird mit JavaScript gefüllt -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Latest Messages -->
+        <h2 class="section-title">LETZTE NACHRICHTEN</h2>
+        <div id="dashboardMessagesContainer">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+
+        <!-- New Trainings Section -->
+        <h2 class="section-title">NEUE SCHULUNGEN</h2>
+        <div class="dashboard-trainings">
+          <div id="dashboardTrainingsContainer">
+            <!-- Wird mit JavaScript gefüllt -->
+          </div>
+          <div class="dashboard-training-action">
+            <a href="#" class="btn btn-primary" id="viewAllTrainingsBtn">
+              <i class="fas fa-graduation-cap"></i> ALLE SCHULUNGEN ANSEHEN
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookings Tab -->
+      <div id="bookingsTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">BUCHUNGSVERWALTUNG</h2>
+          <button class="action-btn btn-primary" id="newBookingBtn">
+            <i class="fas fa-plus"></i> NEUE BUCHUNG
+          </button>
+        </div>
+
+        <div class="filter-container">
+          <div class="filter-group">
+            <label for="bookingStatusFilter">Status:</label>
+            <select id="bookingStatusFilter">
+              <option value="all">Alle</option>
+              <option value="pending">Ausstehend</option>
+              <option value="confirmed">Bestätigt</option>
+              <option value="completed">Abgeschlossen</option>
+              <option value="cancelled">Storniert</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="bookingDateFilter">Datum:</label>
+            <input type="date" id="bookingDateFilter" />
+          </div>
+          <div class="filter-group">
+            <label for="bookingSearchFilter">Suche:</label>
+            <input
+              type="text"
+              id="bookingSearchFilter"
+              placeholder="Kunde oder Behandlung..."
+            />
+          </div>
+          <button class="action-btn" id="applyFiltersBtn">
+            <i class="fas fa-filter"></i> FILTERN
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>DATUM</th>
+                <th>UHRZEIT</th>
+                <th>KUNDE</th>
+                <th>BEHANDLUNG</th>
+                <th>STATUS</th>
+                <th>AKTIONEN</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsTable">
+              <!-- Wird mit JavaScript gefüllt -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="pagination-btn" id="prevPage">&laquo;</button>
+          <span id="currentPage">Seite 1</span>
+          <button class="pagination-btn" id="nextPage">&raquo;</button>
+        </div>
+      </div>
+
+      <!-- Calendar Tab -->
+      <div id="calendarTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">TERMINKALENDER</h2>
+          <div class="calendar-navigation">
+            <button class="action-btn" id="prevMonth">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <h3 id="currentMonth">März 2025</h3>
+            <button class="action-btn" id="nextMonth">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div id="calendar" class="month-calendar">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+
+        <h2 class="section-title">TAGESANSICHT</h2>
+        <div class="timeline-header">
+          <input type="date" id="timelineDate" />
+        </div>
+        <div id="timeline" class="timeline">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Availability Tab -->
+      <div id="availabilityTab" class="tab-content">
+        <h2 class="section-title">ÖFFNUNGSZEITEN</h2>
+        <form id="availabilityForm">
+          <div class="availability-grid">
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day1" />
+                <label for="day1">Montag</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime1">Von:</label>
+                  <input type="time" id="startTime1" value="09:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime1">Bis:</label>
+                  <input type="time" id="endTime1" value="17:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day2" />
+                <label for="day2">Dienstag</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime2">Von:</label>
+                  <input type="time" id="startTime2" value="09:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime2">Bis:</label>
+                  <input type="time" id="endTime2" value="17:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day3" />
+                <label for="day3">Mittwoch</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime3">Von:</label>
+                  <input type="time" id="startTime3" value="09:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime3">Bis:</label>
+                  <input type="time" id="endTime3" value="17:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day4" />
+                <label for="day4">Donnerstag</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime4">Von:</label>
+                  <input type="time" id="startTime4" value="09:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime4">Bis:</label>
+                  <input type="time" id="endTime4" value="17:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day5" />
+                <label for="day5">Freitag</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime5">Von:</label>
+                  <input type="time" id="startTime5" value="09:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime5">Bis:</label>
+                  <input type="time" id="endTime5" value="17:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day6" />
+                <label for="day6">Samstag</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime6">Von:</label>
+                  <input type="time" id="startTime6" value="10:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime6">Bis:</label>
+                  <input type="time" id="endTime6" value="14:00" disabled />
+                </div>
+              </div>
+            </div>
+
+            <div class="availability-row">
+              <div class="availability-day">
+                <input type="checkbox" id="day7" />
+                <label for="day7">Sonntag</label>
+              </div>
+              <div class="availability-time">
+                <div class="time-input">
+                  <label for="startTime7">Von:</label>
+                  <input type="time" id="startTime7" value="10:00" disabled />
+                </div>
+                <div class="time-input">
+                  <label for="endTime7">Bis:</label>
+                  <input type="time" id="endTime7" value="14:00" disabled />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-save"></i> ÖFFNUNGSZEITEN SPEICHERN
+          </button>
+        </form>
+
+        <h2 class="section-title">BLOCKIERTE TAGE</h2>
+        <div class="blocked-days-container">
+          <div class="add-blocked-date">
+            <input type="date" id="newBlockedDate" min="2025-01-01" />
+            <button type="button" class="action-btn" id="addBlockedDateBtn">
+              <i class="fas fa-plus"></i> HINZUFÜGEN
+            </button>
+          </div>
+
+          <div id="blockedDatesContainer" class="blocked-dates-list">
+            <!-- Wird mit JavaScript gefüllt -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Treatments Tab -->
+      <div id="treatmentsTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">BEHANDLUNGEN</h2>
+          <button class="action-btn btn-primary" id="showAddTreatmentBtn">
+            <i class="fas fa-plus"></i> NEUE BEHANDLUNG
+          </button>
+        </div>
+
+        <div
+          class="add-treatment-form-container"
+          id="addTreatmentFormContainer"
+        >
+          <h3><i class="fas fa-spa"></i> Neue Behandlung hinzufügen</h3>
+          <form id="addTreatmentForm">
+            <div class="form-group">
+              <label for="treatmentName">Behandlungsname:</label>
+              <input type="text" id="treatmentName" required />
+            </div>
+            <div class="form-group">
+              <label for="treatmentDuration">Dauer (Minuten):</label>
+              <input
+                type="number"
+                id="treatmentDuration"
+                min="15"
+                step="15"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="treatmentPrice">Preis (€):</label>
+              <input
+                type="number"
+                id="treatmentPrice"
+                min="0"
+                step="0.01"
+                required
+              />
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-plus"></i> BEHANDLUNG HINZUFÜGEN
+            </button>
+          </form>
+        </div>
+
+        <div id="treatmentsContainer" class="treatments-grid">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Offers Tab -->
+      <div id="offersTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">SONDERANGEBOTE</h2>
+          <button class="action-btn btn-primary" id="showAddOfferBtn">
+            <i class="fas fa-plus"></i> NEUES ANGEBOT
+          </button>
+        </div>
+
+        <div class="add-offer-form-container" id="addOfferFormContainer">
+          <h3><i class="fas fa-tags"></i> Neues Sonderangebot erstellen</h3>
+          <form id="addOfferForm">
+            <div class="form-group">
+              <label for="offerTitle">Titel:</label>
+              <input type="text" id="offerTitle" required />
+            </div>
+            <div class="form-group">
+              <label for="offerDescription">Beschreibung:</label>
+              <textarea id="offerDescription" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="offerDiscount">Rabatt (%):</label>
+              <input
+                type="number"
+                id="offerDiscount"
+                min="0"
+                max="100"
+                value="0"
+              />
+            </div>
+            <div class="form-group">
+              <label for="offerValidUntil">Gültig bis:</label>
+              <input type="date" id="offerValidUntil" required />
+            </div>
+            <div class="form-group">
+              <label for="offerTreatments">Behandlungen:</label>
+              <select id="offerTreatments" multiple required>
+                <!-- Wird mit JavaScript gefüllt -->
+              </select>
+              <small
+                >Mehrfachauswahl mit Strg-Taste (Windows) oder Command-Taste
+                (Mac)</small
+              >
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-plus"></i> ANGEBOT ERSTELLEN
+            </button>
+          </form>
+        </div>
+
+        <div id="offersContainer" class="offers-grid">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Reviews Tab -->
+      <div id="reviewsTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">KUNDENBEWERTUNGEN</h2>
+          <div class="rating-stats">
+            <div class="rating-average">
+              <span id="ratingAverage">4.5</span>
+              <div class="stars-container">★★★★½</div>
+            </div>
+            <div>aus <span id="ratingCount">24</span> Bewertungen</div>
+          </div>
+        </div>
+
+        <div id="reviewsContainer" class="reviews-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div id="messagesTab" class="tab-content">
+        <div class="tab-header">
+          <h2 class="section-title">NACHRICHTEN</h2>
+          <button class="action-btn btn-primary" id="newMessageBtn">
+            <i class="fas fa-paper-plane"></i> NEUE NACHRICHT
+          </button>
+        </div>
+
+        <div class="messages-filter">
+          <select id="messageFilter">
+            <option value="all">Alle Nachrichten</option>
+            <option value="unread">Ungelesene Nachrichten</option>
+            <option value="from-admin">Von Administrator</option>
+            <option value="from-customer">Von Kunden</option>
+          </select>
+        </div>
+
+        <div id="messagesContainer" class="messages-container">
+          <!-- Wird mit JavaScript gefüllt -->
+        </div>
+      </div>
+
+      <!-- Profile Tab -->
+      <div id="profileTab" class="tab-content">
+        <h2 class="section-title">STUDIO-PROFIL</h2>
+        <div class="profile-container">
+          <form id="profileForm">
+            <div class="form-section">
+              <h3>
+                <i class="fas fa-info-circle"></i> Allgemeine Informationen
+              </h3>
+              <div class="form-group">
+                <label for="profileName">Studioname:</label>
+                <input type="text" id="profileName" required />
+              </div>
+              <div class="form-group">
+                <label for="profileLocation">Standort:</label>
+                <input type="text" id="profileLocation" required />
+              </div>
+              <div class="form-group">
+                <label for="profileDescription">Beschreibung:</label>
+                <textarea id="profileDescription"></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fas fa-address-card"></i> Kontaktdaten</h3>
+              <div class="form-group">
+                <label for="profileContact">Ansprechpartner:</label>
+                <input type="text" id="profileContact" />
+              </div>
+              <div class="form-group">
+                <label for="profileEmail">E-Mail:</label>
+                <input type="email" id="profileEmail" required />
+              </div>
+              <div class="form-group">
+                <label for="profilePhone">Telefon:</label>
+                <input type="tel" id="profilePhone" />
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fas fa-share-alt"></i> Social Media</h3>
+              <div class="form-group">
+                <label for="profileInstagram">Instagram:</label>
+                <input type="url" id="profileInstagram" />
+              </div>
+              <div class="form-group">
+                <label for="profileFacebook">Facebook:</label>
+                <input type="url" id="profileFacebook" />
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-save"></i> PROFIL SPEICHERN
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Trainings Tab (New) -->
+      <div id="trainingsTab" class="tab-content">
+        <h2 class="section-title">SCHULUNGEN</h2>
+
+        <div class="trainings-introduction">
+          <p>
+            Herzlich willkommen im Schulungsbereich des YAVU IRI Filler-Systems.
+            Hier finden Sie umfassende Schulungsmaterialien, die Ihnen helfen,
+            Ihre Fähigkeiten zu verbessern und das Beste aus dem IRI
+            Filler-System herauszuholen.
+          </p>
+        </div>
+
+        <div class="trainings-categories">
+          <div class="training-category">
+            <div class="category-header">
+              <h3><i class="fas fa-book"></i> Grundlagen</h3>
+              <p>Einführung und grundlegende Techniken</p>
+            </div>
+            <div class="training-list" id="basicTrainingsContainer">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+
+          <div class="training-category">
+            <div class="category-header">
+              <h3><i class="fas fa-chart-line"></i> Fortgeschritten</h3>
+              <p>Erweiterte Techniken und Anwendungsfälle</p>
+            </div>
+            <div class="training-list" id="advancedTrainingsContainer">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+
+          <div class="training-category">
+            <div class="category-header">
+              <h3><i class="fas fa-star"></i> Spezial-Techniken</h3>
+              <p>Spezielle Anwendungen und neueste Entwicklungen</p>
+            </div>
+            <div class="training-list" id="specialTrainingsContainer">
+              <!-- Wird mit JavaScript gefüllt -->
+            </div>
+          </div>
+        </div>
+
+        <div class="training-certificates">
+          <h3><i class="fas fa-certificate"></i> Ihre Zertifikate</h3>
+          <div id="certificatesContainer" class="certificates-list">
+            <!-- Wird mit JavaScript gefüllt -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual Booking Modal -->
+      <div class="modal" id="bookingModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NEUE BUCHUNG</h2>
+          <form id="manualBookingForm">
+            <div class="form-group">
+              <label for="customerName">Kundenname:</label>
+              <input type="text" id="customerName" required />
+            </div>
+            <div class="form-group">
+              <label for="customerEmail">E-Mail:</label>
+              <input type="email" id="customerEmail" />
+            </div>
+            <div class="form-group">
+              <label for="customerPhone">Telefon:</label>
+              <input type="tel" id="customerPhone" />
+            </div>
+            <div class="form-group">
+              <label for="bookingTreatment">Behandlung:</label>
+              <select id="bookingTreatment" required>
+                <option value="">Behandlung auswählen...</option>
+                <!-- Wird mit JavaScript gefüllt -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookingDate">Datum:</label>
+              <input type="date" id="bookingDate" required />
+            </div>
+            <div class="form-group">
+              <label for="bookingTime">Uhrzeit:</label>
+              <select id="bookingTime" required>
+                <option value="">Uhrzeit auswählen...</option>
+                <option value="09:00">09:00 Uhr</option>
+                <option value="09:30">09:30 Uhr</option>
+                <option value="10:00">10:00 Uhr</option>
+                <option value="10:30">10:30 Uhr</option>
+                <option value="11:00">11:00 Uhr</option>
+                <option value="11:30">11:30 Uhr</option>
+                <option value="12:00">12:00 Uhr</option>
+                <option value="12:30">12:30 Uhr</option>
+                <option value="13:00">13:00 Uhr</option>
+                <option value="13:30">13:30 Uhr</option>
+                <option value="14:00">14:00 Uhr</option>
+                <option value="14:30">14:30 Uhr</option>
+                <option value="15:00">15:00 Uhr</option>
+                <option value="15:30">15:30 Uhr</option>
+                <option value="16:00">16:00 Uhr</option>
+                <option value="16:30">16:30 Uhr</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookingNotes">Anmerkungen:</label>
+              <textarea id="bookingNotes"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-calendar-plus"></i> BUCHUNG ERSTELLEN
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Message Modal -->
+      <div class="modal" id="messageModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">NACHRICHT SENDEN</h2>
+          <form id="messageForm">
+            <div class="form-group">
+              <label for="messageRecipient">Empfänger:</label>
+              <input type="text" id="messageRecipient" readonly />
+            </div>
+            <div class="form-group">
+              <label for="messageSubject">Betreff:</label>
+              <input type="text" id="messageSubject" required />
+            </div>
+            <div class="form-group">
+              <label for="messageContent">Nachricht:</label>
+              <textarea id="messageContent" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="sendMessageBtn">
+              <i class="fas fa-paper-plane"></i> NACHRICHT SENDEN
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Training Video Modal (New) -->
+      <div class="modal" id="videoModal">
+        <div class="modal-content modal-content-large">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title" id="videoModalTitle">Schulungsvideo</h2>
+          <div class="video-container">
+            <video id="trainingVideo" controls>
+              <source src="" type="video/mp4" id="videoSource" />
+              Ihr Browser unterstützt keine Video-Wiedergabe.
+            </video>
+          </div>
+          <div class="video-details">
+            <div class="video-description" id="videoDescription"></div>
+            <div class="video-actions">
+              <button class="action-btn" id="markAsCompletedBtn">
+                <i class="fas fa-check-circle"></i> ALS ABGESCHLOSSEN MARKIEREN
+              </button>
+              <button class="action-btn" id="downloadResourcesBtn">
+                <i class="fas fa-download"></i> MATERIALIEN HERUNTERLADEN
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate Modal (New) -->
+      <div class="modal" id="certificateModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2 class="modal-title">Ihr Zertifikat</h2>
+          <div class="certificate-container" id="certificateContent">
+            <!-- Wird mit JavaScript gefüllt -->
+          </div>
+          <div class="certificate-actions">
+            <button class="action-btn" id="downloadCertificateBtn">
+              <i class="fas fa-download"></i> ZERTIFIKAT HERUNTERLADEN
+            </button>
+            <button class="action-btn" id="printCertificateBtn">
+              <i class="fas fa-print"></i> ZERTIFIKAT DRUCKEN
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="main-footer">
+        © 2025 YAVU - IRI Filler-System | Studio Portal v1.0
+      </div>
+    </div>
+
+    <!-- Firebase App (core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <!-- Firebase Auth -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <!-- Firebase Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <!-- Firebase Storage -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+
+    <!-- Deine Firebase-Konfiguration -->
+    <script src="js/firebase.js"></script>
+
+    <script src="data/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/studio.js"></script>
+  </body>
+</html>
+
+<!-- Einbindung des Script-Loaders in die HTML-Dateien -->
+<script src="../script-loader.js"></script>
