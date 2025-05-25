@@ -1,0 +1,43 @@
+{
+    "version": 2,
+    "builds": [
+          {
+                  "src": "backend/server.js",
+                  "use": "@vercel/node"
+          }
+    ],
+    "routes": [
+          {
+                  "src": "/api/(.*)",
+                  "dest": "backend/server.js"
+          },
+          {
+                  "src": "/(.*\\.(css|js|html|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+                  "dest": "/$1"
+          },
+          {
+                  "src": "/admin",
+                  "dest": "/admin.html"
+          },
+          {
+                  "src": "/customer", 
+            "dest": "/customer.html"
+          },
+          {
+                  "src": "/studio",
+                  "dest": "/studio.html"
+          },
+          {
+                  "src": "/(.*)",
+                  "dest": "/index.html"
+          }
+    ],
+    "env": {
+          "NODE_ENV": "production"
+    },
+    "functions": {
+          "backend/server.js": {
+                  "maxDuration": 30
+          }
+    }
+}
