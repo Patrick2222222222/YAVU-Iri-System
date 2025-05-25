@@ -1,0 +1,41 @@
+{
+    "name": "yavu-iri-system",
+    "version": "1.0.0",
+    "description": "Moderne Plattform für nadelfreie Hyaluron-Behandlungen in Kosmetikstudios",
+    "main": "backend/server.js",
+    "scripts": {
+          "build": "cd backend && npm install",
+          "start": "node backend/server.js",
+          "dev": "cd backend && npm run dev",
+          "install-backend": "cd backend && npm install",
+          "init-db": "cd backend && node initDB.js",
+          "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+          "yavu",
+          "iri",
+          "filler",
+          "hyaluron",
+          "beauty",
+          "cosmetic",
+          "booking",
+          "studio"
+    ],
+    "author": "YAVU",
+    "license": "MIT",
+    "engines": {
+          "node": ">=18.0.0",
+          "npm": ">=8.0.0"
+    },
+    "dependencies": {
+          "cors": "^2.8.5",
+          "dotenv": "^16.0.3",
+          "express": "^4.18.2",
+          "mysql2": "^3.2.0",
+          "sequelize": "^6.37.7",
+          "sqlite3": "^5.1.7"
+    },
+    "devDependencies": {
+          "nodemon": "^2.0.22"
+    }
+}
